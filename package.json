@@ -13,6 +13,7 @@
     "migrate:dev": "npm run build && node dist/migrate.js --alter",
     "migrate:reset": "npm run build && node dist/migrate.js --force",
     "migrate:safe": "npm run build && node dist/migrate.js --safe",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
