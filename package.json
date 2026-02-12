@@ -1,0 +1,32 @@
+{
+  "name": "justifi-shared-models",
+  "version": "1.0.0",
+  "description": "Shared Sequelize models for Justifi services",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "migrate:dev": "npm run build && node dist/migrate.js --alter",
+    "migrate:reset": "npm run build && node dist/migrate.js --force",
+    "migrate:safe": "npm run build && node dist/migrate.js --safe",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.4",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.0"
+  }
+}
