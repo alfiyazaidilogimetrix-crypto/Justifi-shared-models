@@ -11,6 +11,7 @@ export interface FileAttributes {
   file_path: string;
   file_content: Buffer;
   folder_id?: number; // Optional foreign key to Folder
+  workspace_id?: number; // Optional foreign key to Workspace
   owner_id?: number; // Optional foreign key to User
   createdAt?: Date;
   updatedAt?: Date;
@@ -33,6 +34,7 @@ class File
   public file_path!: string;
   public file_content!: Buffer;
   public folder_id?: number;
+  public workspace_id?: number;
   public owner_id?: number;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -80,6 +82,10 @@ File.init(
       comment: 'Actual file content stored in database',
     },
     folder_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    workspace_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },

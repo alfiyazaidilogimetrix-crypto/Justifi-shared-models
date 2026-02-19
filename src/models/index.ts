@@ -281,6 +281,17 @@ File.belongsTo(Folder, {
   as: 'folder',
 });
 
+// ─── Workspace ↔ File (Root level files) ──────────────────
+Workspace.hasMany(File, {
+  foreignKey: 'workspace_id',
+  as: 'files',
+});
+
+File.belongsTo(Workspace, {
+  foreignKey: 'workspace_id',
+  as: 'workspace',
+});
+
 // ─── File ↔ FileShare ─────────────────────────────────────
 File.hasMany(FileShare, {
   foreignKey: 'file_id',
