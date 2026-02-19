@@ -1,7 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/db';
 
-interface UserRecordAttributes {
+export interface UserRecordAttributes {
   id: number;
   user_id: number;
   first_name?: string;
@@ -16,7 +16,7 @@ interface UserRecordAttributes {
   updated_at?: Date;
 }
 
-interface UserRecordCreationAttributes extends Optional<
+export interface UserRecordCreationAttributes extends Optional<
   UserRecordAttributes,
   'id' | 'status' | 'is_recharge' | 'is_package' | 'created_at' | 'updated_at'
 > {}

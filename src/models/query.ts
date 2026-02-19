@@ -1,7 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/db';
 
-interface QueryAttributes {
+export interface QueryAttributes {
   id: number;
   title: string;
   description: string;
@@ -14,7 +14,7 @@ interface QueryAttributes {
   updatedAt?: Date;
 }
 
-interface QueryCreationAttributes extends Optional<
+export interface QueryCreationAttributes extends Optional<
   QueryAttributes,
   | 'id'
   | 'query'

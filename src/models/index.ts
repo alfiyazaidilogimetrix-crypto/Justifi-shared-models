@@ -1,17 +1,17 @@
 import sequelize from '../config/db';
 
 // ─── Model Imports ───────────────────────────────────────────────────────────
-import User from './user';
-import UserRecord from './user_records';
+import User, { UserAttributes, UserCreationAttributes } from './user';
+import UserRecord, { UserRecordAttributes, UserRecordCreationAttributes } from './user_records';
 import UserDetails from './user_details';
 import Lawyer from './lawyer';
 import Junior from './junior';
-import LegalArea from './legal_area';
-import Query from './query';
-import QueryResponse from './query_response';
-import Slot from './slot';
-import RylawChat from './rylaw_chat';
-import File from './files';
+import LegalArea, { LegalAreaAttributes, LegalAreaCreationAttributes } from './legal_area';
+import Query, { QueryAttributes, QueryCreationAttributes } from './query';
+import QueryResponse, { QueryResponseAttributes, QueryResponseCreationAttributes } from './query_response';
+import Slot, { SlotAttributes, SlotCreationAttributes } from './slot';
+import RylawChat, { RylawChatAttributes, RylawChatCreationAttributes } from './rylaw_chat';
+import File, { FileAttributes, FileCreationAttributes } from './files';
 import CompanyRegistration from './company';
 import CompanyLawyer from './company_lawyer';
 import Task from './tasks';
@@ -21,9 +21,9 @@ import DcAdvCase from './dc_adv_cases';
 import DcCaseDetail from './dc_case_details';
 import DcComplex from './dc_complex';
 import DcCourt from './dc_court';
-import CallLog from './call_log';
+import CallLog, { CallLogAttributes, CallLogCreationAttributes } from './call_log';
 import Contract from './contract';
-import Message from './message';
+import Message, { MessageAttributes, MessageCreationAttributes } from './message';
 import { MessageReply, MessageDelete, MessageStatus } from './message_process';
 import ChatGroup from './chat_group';
 import GroupMember from './group_member';
@@ -174,8 +174,11 @@ Contract.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(Contract, { foreignKey: 'user_id', as: 'contracts' });
 
 // ─── Message associations──────────────────────────────────────────────
-Message.belongsTo(File, { foreignKey: 'file_id' });
+Message.belongsTo(File, { foreignKey: 'file_id', as: 'file' });
 File.hasMany(Message, { foreignKey: 'file_id' });
+
+Message.belongsTo(Slot, { foreignKey: 'slot_id', as: 'slot' });
+Slot.hasMany(Message, { foreignKey: 'slot_id' });
 
 // ─── User ↔ File ─────────────────────────────────────────
 User.hasMany(File, { foreignKey: 'owner_id', as: 'files' });
@@ -335,18 +338,18 @@ WorkspaceMember.belongsTo(User, {
 // ─── Exports ─────────────────────────────────────────────────────────────────
 export {
   sequelize,
-  User,
-  UserRecord,
+  User, UserAttributes, UserCreationAttributes,
+  UserRecord, UserRecordAttributes, UserRecordCreationAttributes,
   UserDetails,
   Lawyer,
   Junior,
-  LegalArea,
+  LegalArea, LegalAreaAttributes, LegalAreaCreationAttributes,
   Contract,
-  Query,
-  QueryResponse,
-  Slot,
-  RylawChat,
-  File,
+  Query, QueryAttributes, QueryCreationAttributes,
+  QueryResponse, QueryResponseAttributes, QueryResponseCreationAttributes,
+  Slot, SlotAttributes, SlotCreationAttributes,
+  RylawChat, RylawChatAttributes, RylawChatCreationAttributes,
+  File, FileAttributes, FileCreationAttributes,
   CompanyRegistration,
   CompanyLawyer,
   Task,
@@ -356,8 +359,8 @@ export {
   DcCaseDetail,
   DcComplex,
   DcCourt,
-  CallLog,
-  Message,
+  CallLog, CallLogAttributes, CallLogCreationAttributes,
+  Message, MessageAttributes, MessageCreationAttributes,
   MessageReply,
   MessageDelete,
   MessageStatus,

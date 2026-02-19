@@ -4,7 +4,7 @@ import sequelize from '../config/db';
 /**
  * User table attributes
  */
-interface UserAttributes {
+export interface UserAttributes {
   user_id: number;
   username: string;
   email: string;
@@ -21,7 +21,7 @@ interface UserAttributes {
 /**
  * Attributes allowed during creation
  */
-interface UserCreationAttributes extends Optional<
+export interface UserCreationAttributes extends Optional<
   UserAttributes,
   | 'user_id'
   | 'encrypted_password'

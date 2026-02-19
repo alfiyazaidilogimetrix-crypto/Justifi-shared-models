@@ -1,7 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/db';
 
-interface MessageAttributes {
+export interface MessageAttributes {
   message_id: number;
   query_id?: number | null;
   message?: string;
@@ -11,6 +11,8 @@ interface MessageAttributes {
   group_id?: number | null;
   room_id?: string | null;
   is_group?: boolean;
+  delivered?: boolean;
+  seen?: boolean;
 
   delivered_at?: Date | null;
   seen_at?: Date | null;
@@ -19,24 +21,31 @@ interface MessageAttributes {
   deleted_at?: Date | null;
 
   file_id?: number | null;
+  slot_id?: number | null;
   sent_at?: Date;
 
   createdAt?: Date;
   updatedAt?: Date;
+
+  file?: any;
+  slot?: any;
 }
 
-interface MessageCreationAttributes extends Optional<
+export interface MessageCreationAttributes extends Optional<
   MessageAttributes,
   | 'message_id'
   | 'receiver_id'
   | 'group_id'
   | 'room_id'
   | 'is_group'
+  | 'delivered'
+  | 'seen'
   | 'delivered_at'
   | 'seen_at'
   | 'is_deleted_for_everyone'
   | 'deleted_at'
   | 'file_id'
+  | 'slot_id'
   | 'sent_at'
   | 'createdAt'
   | 'updatedAt'
@@ -55,6 +64,8 @@ class Message
   public group_id?: number | null;
   public room_id?: string | null;
   public is_group?: boolean;
+  public delivered?: boolean;
+  public seen?: boolean;
 
   public delivered_at?: Date | null;
   public seen_at?: Date | null;
@@ -63,10 +74,14 @@ class Message
   public deleted_at?: Date | null;
 
   public file_id?: number | null;
+  public slot_id?: number | null;
   public sent_at?: Date;
 
   public createdAt?: Date;
   public updatedAt?: Date;
+
+  public readonly file?: any;
+  public readonly slot?: any;
 }
 
 Message.init(
@@ -108,6 +123,14 @@ Message.init(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    delivered: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    seen: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     delivered_at: {
       type: DataTypes.DATE,
       allowNull: true,
@@ -125,6 +148,10 @@ Message.init(
       allowNull: true,
     },
     file_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    slot_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },

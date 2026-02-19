@@ -1,14 +1,14 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/db';
 
-interface LegalAreaAttributes {
+export interface LegalAreaAttributes {
   id: number;
   legal_area: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-interface LegalAreaCreationAttributes extends Optional<
+export interface LegalAreaCreationAttributes extends Optional<
   LegalAreaAttributes,
   'id' | 'legal_area' | 'createdAt' | 'updatedAt'
 > {}

@@ -1,7 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/db';
 
-interface RylawChatAttributes {
+export interface RylawChatAttributes {
   id: number;
   user_id: number;
   file_id?: number;
@@ -14,7 +14,7 @@ interface RylawChatAttributes {
   category?: string;
 }
 
-interface RylawChatCreationAttributes extends Optional<
+export interface RylawChatCreationAttributes extends Optional<
   RylawChatAttributes,
   'id' | 'severity' | 'category' | 'created_at'
 > {}

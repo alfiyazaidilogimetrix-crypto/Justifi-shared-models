@@ -1,12 +1,12 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/db';
 
-interface DateAndTime {
+export interface DateAndTime {
   date: string;
   time: string;
 }
 
-interface SlotAttributes {
+export interface SlotAttributes {
   id: number;
   title: string;
   query_id: number;
@@ -18,7 +18,7 @@ interface SlotAttributes {
   updated_at?: Date;
 }
 
-interface SlotCreationAttributes extends Optional<
+export interface SlotCreationAttributes extends Optional<
   SlotAttributes,
   'id' | 'isExpire' | 'created_at' | 'updated_at'
 > {}

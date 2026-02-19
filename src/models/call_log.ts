@@ -1,7 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/db';
 
-interface CallLogAttributes {
+export interface CallLogAttributes {
   id: number;
   fromUserId: number;
   toUserId: number;
@@ -15,7 +15,7 @@ interface CallLogAttributes {
   updatedAt?: Date;
 }
 
-interface CallLogCreationAttributes extends Optional<
+export interface CallLogCreationAttributes extends Optional<
   CallLogAttributes,
   'id' | 'createdAt' | 'updatedAt'
 > {}
