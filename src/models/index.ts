@@ -177,6 +177,10 @@ User.hasMany(Contract, { foreignKey: 'user_id', as: 'contracts' });
 Message.belongsTo(File, { foreignKey: 'file_id' });
 File.hasMany(Message, { foreignKey: 'file_id' });
 
+// ─── User ↔ File ─────────────────────────────────────────
+User.hasMany(File, { foreignKey: 'owner_id', as: 'files' });
+File.belongsTo(User, { foreignKey: 'owner_id', as: 'owner' });
+
 Message.belongsTo(Query, { foreignKey: 'query_id' });
 Query.hasMany(Message, { foreignKey: 'query_id' });
 // Message ↔ MessageDelete
@@ -288,6 +292,35 @@ FileShare.belongsTo(File, {
   as: 'file',
 });
 
+// ─── User ↔ FileShare ────────────────────────────────────
+User.hasMany(FileShare, { foreignKey: 'shared_by', as: 'sharesCreated' });
+FileShare.belongsTo(User, { foreignKey: 'shared_by', as: 'sharer' });
+
+User.hasMany(FileShare, { foreignKey: 'shared_with', as: 'sharesReceived' });
+FileShare.belongsTo(User, { foreignKey: 'shared_with', as: 'sharedWith' });
+
+// ─── Workspace ↔ TeamspaceMember ──────────────────────────
+Workspace.hasMany(TeamspaceMember, {
+  foreignKey: 'teamspace_id',
+  as: 'members',
+});
+
+TeamspaceMember.belongsTo(Workspace, {
+  foreignKey: 'teamspace_id',
+  as: 'workspace',
+});
+
+// ─── User ↔ TeamspaceMember ──────────────────────────────
+User.hasMany(TeamspaceMember, {
+  foreignKey: 'user_id',
+  as: 'teamMemberships',
+});
+
+TeamspaceMember.belongsTo(User, {
+  foreignKey: 'user_id',
+  as: 'user',
+});
+
 // ─── Exports ─────────────────────────────────────────────────────────────────
 export {
   sequelize,
@@ -319,4 +352,8 @@ export {
   MessageStatus,
   ChatGroup,
   GroupMember,
+  Workspace,
+  TeamspaceMember,
+  Folder,
+  FileShare,
 };

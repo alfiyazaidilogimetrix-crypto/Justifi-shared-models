@@ -7,6 +7,7 @@ export {
   Lawyer,
   Junior,
   LegalArea,
+  Contract,
   Query,
   QueryResponse,
   Slot,
@@ -21,6 +22,17 @@ export {
   DcCaseDetail,
   DcComplex,
   DcCourt,
+  CallLog,
+  Message,
+  MessageReply,
+  MessageDelete,
+  MessageStatus,
+  ChatGroup,
+  GroupMember,
+  Workspace,
+  TeamspaceMember,
+  Folder,
+  FileShare,
 } from './models';
 
 export { TestConnection } from './config/db';
