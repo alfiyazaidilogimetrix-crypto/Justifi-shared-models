@@ -25,6 +25,12 @@ import CallLog from './call_log';
 import Contract from './contract';
 import Message from './message';
 import { MessageReply, MessageDelete, MessageStatus } from './message_process';
+import ChatGroup from './chat_group';
+import GroupMember from './group_member';
+import Workspace from './workspaces';
+import TeamspaceMember from './team_member';
+import Folder from './folder';
+import FileShare from './file_share';
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -204,6 +210,84 @@ MessageStatus.belongsTo(Message, {
   foreignKey: 'message_id',
 });
 
+// ─── ChatGroup ↔ GroupMember ─────────────────────────────────────────────
+ChatGroup.hasMany(GroupMember, {
+  foreignKey: 'group_id',
+  as: 'members',
+});
+
+GroupMember.belongsTo(ChatGroup, {
+  foreignKey: 'group_id',
+  as: 'chat_group',
+});
+
+// ─── User ↔ GroupMember ──────────────────────────────────────────────────
+User.hasMany(GroupMember, { foreignKey: 'user_id', as: 'groupMemberships' });
+GroupMember.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+
+// ─── User ↔ Workspace ─────────────────────────────────────
+User.hasMany(Workspace, {
+  foreignKey: 'owner_id',
+  as: 'workspaces',
+});
+
+Workspace.belongsTo(User, {
+  foreignKey: 'owner_id',
+  as: 'owner',
+});
+// ─── Workspace ↔ Folder ───────────────────────────────────
+Workspace.hasMany(Folder, {
+  foreignKey: 'workspace_id',
+  as: 'folders',
+});
+
+Folder.belongsTo(Workspace, {
+  foreignKey: 'workspace_id',
+  as: 'workspace',
+});
+// ─── Folder ↔ Folder (Nested) ─────────────────────────────
+Folder.hasMany(Folder, {
+  foreignKey: 'parent_folder_id',
+  as: 'subFolders',
+});
+
+Folder.belongsTo(Folder, {
+  foreignKey: 'parent_folder_id',
+  as: 'parentFolder',
+});
+
+// ─── User ↔ Folder ────────────────────────────────────────
+User.hasMany(Folder, {
+  foreignKey: 'created_by',
+  as: 'createdFolders',
+});
+
+Folder.belongsTo(User, {
+  foreignKey: 'created_by',
+  as: 'creator',
+});
+// ─── Folder ↔ File ────────────────────────────────────────
+Folder.hasMany(File, {
+  foreignKey: 'folder_id',
+  as: 'files',
+});
+
+File.belongsTo(Folder, {
+  foreignKey: 'folder_id',
+  as: 'folder',
+});
+
+// ─── File ↔ FileShare ─────────────────────────────────────
+File.hasMany(FileShare, {
+  foreignKey: 'file_id',
+  as: 'shares',
+});
+
+FileShare.belongsTo(File, {
+  foreignKey: 'file_id',
+  as: 'file',
+});
+
 // ─── Exports ─────────────────────────────────────────────────────────────────
 export {
   sequelize,
@@ -233,4 +317,6 @@ export {
   MessageReply,
   MessageDelete,
   MessageStatus,
+  ChatGroup,
+  GroupMember,
 };

@@ -10,6 +10,8 @@ export interface FileAttributes {
   size: number;
   file_path: string;
   file_content: Buffer;
+  folder_id?: number; // Optional foreign key to Folder
+  owner_id?: number; // Optional foreign key to User
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -30,6 +32,8 @@ class File
   public size!: number;
   public file_path!: string;
   public file_content!: Buffer;
+  public folder_id?: number;
+  public owner_id?: number;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -74,6 +78,14 @@ File.init(
       type: DataTypes.BLOB('long'),
       allowNull: false,
       comment: 'Actual file content stored in database',
+    },
+    folder_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    owner_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
   },
   {
