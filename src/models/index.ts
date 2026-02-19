@@ -28,7 +28,7 @@ import { MessageReply, MessageDelete, MessageStatus } from './message_process';
 import ChatGroup from './chat_group';
 import GroupMember from './group_member';
 import Workspace from './workspaces';
-import TeamspaceMember from './team_member';
+import WorkspaceMember from './team_member';
 import Folder from './folder';
 import FileShare from './file_share';
 
@@ -299,24 +299,24 @@ FileShare.belongsTo(User, { foreignKey: 'shared_by', as: 'sharer' });
 User.hasMany(FileShare, { foreignKey: 'shared_with', as: 'sharesReceived' });
 FileShare.belongsTo(User, { foreignKey: 'shared_with', as: 'sharedWith' });
 
-// ─── Workspace ↔ TeamspaceMember ──────────────────────────
-Workspace.hasMany(TeamspaceMember, {
-  foreignKey: 'teamspace_id',
+// ─── Workspace ↔ WorkspaceMember ──────────────────────────
+Workspace.hasMany(WorkspaceMember, {
+  foreignKey: 'workspace_id',
   as: 'members',
 });
 
-TeamspaceMember.belongsTo(Workspace, {
-  foreignKey: 'teamspace_id',
+WorkspaceMember.belongsTo(Workspace, {
+  foreignKey: 'workspace_id',
   as: 'workspace',
 });
 
-// ─── User ↔ TeamspaceMember ──────────────────────────────
-User.hasMany(TeamspaceMember, {
+// ─── User ↔ WorkspaceMember ──────────────────────────────
+User.hasMany(WorkspaceMember, {
   foreignKey: 'user_id',
-  as: 'teamMemberships',
+  as: 'workspaceMemberships',
 });
 
-TeamspaceMember.belongsTo(User, {
+WorkspaceMember.belongsTo(User, {
   foreignKey: 'user_id',
   as: 'user',
 });
@@ -353,7 +353,7 @@ export {
   ChatGroup,
   GroupMember,
   Workspace,
-  TeamspaceMember,
+  WorkspaceMember,
   Folder,
   FileShare,
 };

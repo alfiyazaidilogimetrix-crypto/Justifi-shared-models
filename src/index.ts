@@ -30,7 +30,7 @@ export {
   ChatGroup,
   GroupMember,
   Workspace,
-  TeamspaceMember,
+  WorkspaceMember,
   Folder,
   FileShare,
 } from './models';
