@@ -21,6 +21,8 @@ import DcAdvCase from './dc_adv_cases';
 import DcCaseDetail from './dc_case_details';
 import DcComplex from './dc_complex';
 import DcCourt from './dc_court';
+import CallLog from './call_log';
+import Contract from './contract';
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -43,10 +45,22 @@ User.hasMany(Junior, { foreignKey: 'user_id', as: 'juniors' });
 Junior.belongsTo(User, { foreignKey: 'user_id', as: 'junior' });
 
 // ─── Lawyer ↔ File (documents) ──────────────────────────────────────────────
-Lawyer.belongsTo(File, { foreignKey: 'bar_council_certificate', as: 'barCouncilCertificate' });
-Lawyer.belongsTo(File, { foreignKey: 'state_council_certificate', as: 'stateCouncilCertificate' });
-Lawyer.belongsTo(File, { foreignKey: 'certificate_for_practice', as: 'practiceCertificate' });
-Lawyer.belongsTo(File, { foreignKey: 'legal_undertaking', as: 'legalUndertaking' });
+Lawyer.belongsTo(File, {
+  foreignKey: 'bar_council_certificate',
+  as: 'barCouncilCertificate',
+});
+Lawyer.belongsTo(File, {
+  foreignKey: 'state_council_certificate',
+  as: 'stateCouncilCertificate',
+});
+Lawyer.belongsTo(File, {
+  foreignKey: 'certificate_for_practice',
+  as: 'practiceCertificate',
+});
+Lawyer.belongsTo(File, {
+  foreignKey: 'legal_undertaking',
+  as: 'legalUndertaking',
+});
 
 // ─── Company ↔ Lawyer (many-to-many via CompanyLawyer) ──────────────────────
 CompanyRegistration.belongsToMany(Lawyer, {
@@ -63,7 +77,10 @@ Lawyer.belongsToMany(CompanyRegistration, {
   as: 'companies',
 });
 
-CompanyLawyer.belongsTo(CompanyRegistration, { foreignKey: 'company_id', as: 'company' });
+CompanyLawyer.belongsTo(CompanyRegistration, {
+  foreignKey: 'company_id',
+  as: 'company',
+});
 CompanyLawyer.belongsTo(Lawyer, { foreignKey: 'lawyer_id', as: 'lawyer' });
 
 // ─── User ↔ Task ────────────────────────────────────────────────────────────
@@ -126,12 +143,23 @@ QueryResponse.belongsTo(Query, { foreignKey: 'query_id', as: 'query' });
 Query.hasMany(QueryResponse, { foreignKey: 'query_id', as: 'responses' });
 
 QueryResponse.belongsTo(Lawyer, { foreignKey: 'lawyer_id', as: 'lawyer' });
-Lawyer.hasMany(QueryResponse, { foreignKey: 'lawyer_id', as: 'queryResponses' });
+Lawyer.hasMany(QueryResponse, {
+  foreignKey: 'lawyer_id',
+  as: 'queryResponses',
+});
 
 // ─── LegalArea ↔ Query (category) ───────────────────────────────────────────
 // Query.category stores the LegalArea ID
 Query.belongsTo(LegalArea, { foreignKey: 'category', as: 'legalArea' });
 LegalArea.hasMany(Query, { foreignKey: 'category', as: 'queries' });
+
+// ─── CallLog associations ───────────────────────────────────────────────────
+CallLog.belongsTo(User, { foreignKey: 'fromUserId', as: 'fromUser' });
+CallLog.belongsTo(User, { foreignKey: 'toUserId', as: 'toUser' });
+
+// ─── Contract associations──────────────────────────────────────────────
+Contract.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+User.hasMany(Contract, { foreignKey: 'user_id', as: 'contracts' });
 
 // ─── Exports ─────────────────────────────────────────────────────────────────
 export {
@@ -142,6 +170,7 @@ export {
   Lawyer,
   Junior,
   LegalArea,
+  Contract,
   Query,
   QueryResponse,
   Slot,
@@ -156,4 +185,5 @@ export {
   DcCaseDetail,
   DcComplex,
   DcCourt,
+  CallLog,
 };

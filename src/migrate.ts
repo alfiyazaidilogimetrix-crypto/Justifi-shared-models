@@ -1,27 +1,5 @@
 // migrate.ts — Sync all Sequelize models with the database
-import {
-  sequelize,
-  User,
-  UserRecord,
-  UserDetails,
-  Lawyer,
-  Junior,
-  LegalArea,
-  Query,
-  QueryResponse,
-  Slot,
-  RylawChat,
-  File,
-  CompanyRegistration,
-  CompanyLawyer,
-  Task,
-  StateData,
-  District,
-  DcAdvCase,
-  DcCaseDetail,
-  DcComplex,
-  DcCourt,
-} from './models';
+import { sequelize } from './models';
 
 /**
  * Sync all models to the database.
@@ -64,7 +42,11 @@ export async function syncTables(
 
 // ─── CLI entry point ─────────────────────────────────────────────────────────
 // Read mode from command-line argument:  node migrate.js --force | --alter | --safe
-const arg = process.argv[2]?.replace('--', '') as 'alter' | 'force' | 'safe' | undefined;
+const arg = process.argv[2]?.replace('--', '') as
+  | 'alter'
+  | 'force'
+  | 'safe'
+  | undefined;
 const mode = ['alter', 'force', 'safe'].includes(arg!) ? arg! : 'safe';
 
 syncTables(mode);
