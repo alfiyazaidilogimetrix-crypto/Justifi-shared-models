@@ -23,6 +23,8 @@ import DcComplex from './dc_complex';
 import DcCourt from './dc_court';
 import CallLog from './call_log';
 import Contract from './contract';
+import Message from './message';
+import { MessageReply, MessageDelete, MessageStatus } from './message_process';
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -153,6 +155,10 @@ Lawyer.hasMany(QueryResponse, {
 Query.belongsTo(LegalArea, { foreignKey: 'category', as: 'legalArea' });
 LegalArea.hasMany(Query, { foreignKey: 'category', as: 'queries' });
 
+// ─── User ↔ Query ───────────────────────────────────────────────────────────
+Query.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+User.hasMany(Query, { foreignKey: 'user_id', as: 'queries' });
+
 // ─── CallLog associations ───────────────────────────────────────────────────
 CallLog.belongsTo(User, { foreignKey: 'fromUserId', as: 'fromUser' });
 CallLog.belongsTo(User, { foreignKey: 'toUserId', as: 'toUser' });
@@ -160,6 +166,43 @@ CallLog.belongsTo(User, { foreignKey: 'toUserId', as: 'toUser' });
 // ─── Contract associations──────────────────────────────────────────────
 Contract.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(Contract, { foreignKey: 'user_id', as: 'contracts' });
+
+// ─── Message associations──────────────────────────────────────────────
+Message.belongsTo(File, { foreignKey: 'file_id' });
+File.hasMany(Message, { foreignKey: 'file_id' });
+
+Message.belongsTo(Query, { foreignKey: 'query_id' });
+Query.hasMany(Message, { foreignKey: 'query_id' });
+// Message ↔ MessageDelete
+Message.hasMany(MessageDelete, {
+  foreignKey: 'message_id',
+  as: 'deletedBy',
+});
+
+MessageDelete.belongsTo(Message, {
+  foreignKey: 'message_id',
+});
+
+// Message ↔ MessageReply
+Message.hasMany(MessageReply, {
+  foreignKey: 'parent_message_id',
+  as: 'replies',
+});
+
+MessageReply.belongsTo(Message, {
+  foreignKey: 'reply_message_id',
+  as: 'replyMessage',
+});
+
+// Message ↔ MessageStatus
+Message.hasMany(MessageStatus, {
+  foreignKey: 'message_id',
+  as: 'statuses',
+});
+
+MessageStatus.belongsTo(Message, {
+  foreignKey: 'message_id',
+});
 
 // ─── Exports ─────────────────────────────────────────────────────────────────
 export {
@@ -186,4 +229,8 @@ export {
   DcComplex,
   DcCourt,
   CallLog,
+  Message,
+  MessageReply,
+  MessageDelete,
+  MessageStatus,
 };
