@@ -174,6 +174,12 @@ Contract.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(Contract, { foreignKey: 'user_id', as: 'contracts' });
 
 // ─── Message associations──────────────────────────────────────────────
+Message.belongsTo(User, { foreignKey: 'sender_id', as: 'sender' });
+User.hasMany(Message, { foreignKey: 'sender_id', as: 'sentMessages' });
+
+Message.belongsTo(User, { foreignKey: 'receiver_id', as: 'receiver' });
+User.hasMany(Message, { foreignKey: 'receiver_id', as: 'receivedMessages' });
+
 Message.belongsTo(File, { foreignKey: 'file_id', as: 'file' });
 File.hasMany(Message, { foreignKey: 'file_id' });
 
@@ -351,6 +357,7 @@ export {
   RylawChat, RylawChatAttributes, RylawChatCreationAttributes,
   File, FileAttributes, FileCreationAttributes,
   CompanyRegistration,
+  CompanyRegistration as Company,
   CompanyLawyer,
   Task,
   StateData,

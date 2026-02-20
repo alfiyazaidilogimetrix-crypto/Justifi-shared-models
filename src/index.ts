@@ -14,6 +14,7 @@ export {
   RylawChat, RylawChatAttributes, RylawChatCreationAttributes,
   File, FileAttributes, FileCreationAttributes,
   CompanyRegistration,
+  CompanyRegistration as Company,
   CompanyLawyer,
   Task,
   StateData,
