@@ -11,6 +11,17 @@ export enum TaskPriority {
 }
 
 /**
+ * Allowed task statuses
+ */
+export enum TaskStatus {
+  PENDING = 'pending',
+  INPROGRESS = 'inprogress',
+  COMPLETED = 'completed',
+  ONHOLD = 'onhold',
+  CANCELED = 'canceled',
+}
+
+/**
  * Task table attributes
  */
 interface TaskAttributes {
@@ -20,6 +31,10 @@ interface TaskAttributes {
   description?: string;
   case_no?: string;
   priority?: TaskPriority;
+
+  task_type?: string;
+  status?: TaskStatus;
+  due_date?: Date;
 }
 
 /**
@@ -27,7 +42,13 @@ interface TaskAttributes {
  */
 interface TaskCreationAttributes extends Optional<
   TaskAttributes,
-  'id' | 'description' | 'case_no' | 'priority'
+  | 'id'
+  | 'description'
+  | 'case_no'
+  | 'priority'
+  | 'task_type'
+  | 'status'
+  | 'due_date'
 > {}
 
 /**
@@ -43,6 +64,10 @@ class Task
   public description?: string;
   public case_no?: string;
   public priority?: TaskPriority;
+
+  public task_type?: string;
+  public status?: TaskStatus;
+  public due_date?: Date;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -74,6 +99,22 @@ Task.init(
     },
     priority: {
       type: DataTypes.ENUM(...Object.values(TaskPriority)),
+      allowNull: true,
+    },
+
+    task_type: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+
+    status: {
+      type: DataTypes.ENUM(...Object.values(TaskStatus)),
+      allowNull: false,
+      defaultValue: TaskStatus.PENDING,
+    },
+
+    due_date: {
+      type: DataTypes.DATE,
       allowNull: true,
     },
   },
