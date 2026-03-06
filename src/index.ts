@@ -34,6 +34,7 @@ export {
   WorkspaceMember,
   Folder,
   FileShare,
+  IPR_Document,
 } from './models';
 
 export { TestConnection } from './config/db';
