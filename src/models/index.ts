@@ -31,6 +31,7 @@ import Workspace from './workspaces';
 import WorkspaceMember from './team_member';
 import Folder from './folder';
 import FileShare from './file_share';
+import IPR_Document from './ipr';
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -377,4 +378,5 @@ export {
   WorkspaceMember,
   Folder,
   FileShare,
+  IPR_Document,
 };
