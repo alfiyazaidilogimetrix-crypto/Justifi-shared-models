@@ -27,6 +27,7 @@ export enum TaskStatus {
 interface TaskAttributes {
   id: number;
   user_id: number;
+  created_by: number;
   title: string;
   description?: string;
   case_no?: string;
@@ -60,6 +61,7 @@ class Task
 {
   public id!: number;
   public user_id!: number;
+  public created_by!: number;
   public title!: string;
   public description?: string;
   public case_no?: string;
@@ -84,6 +86,10 @@ Task.init(
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    created_by: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     title: {
       type: DataTypes.STRING(255),

@@ -48,7 +48,7 @@ RylawChat.init(
     },
     chat_id: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     query: {
       type: DataTypes.TEXT,
