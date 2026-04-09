@@ -86,6 +86,11 @@ Lawyer.belongsToMany(CompanyRegistration, {
   as: 'companies',
 });
 
+Lawyer.hasMany(CompanyLawyer, {
+  foreignKey: 'lawyer_id',
+  as: 'CompanyLawyers',
+});
+
 CompanyLawyer.belongsTo(CompanyRegistration, {
   foreignKey: 'company_id',
   as: 'company',
