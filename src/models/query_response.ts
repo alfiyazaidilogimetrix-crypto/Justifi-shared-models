@@ -64,7 +64,7 @@ QueryResponse.init(
       allowNull: false,
     },
     response: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     isSelect: {
