@@ -35,6 +35,8 @@ export {
   Folder,
   FileShare,
   IPR_Document,
+  Plan,
+  Payment,
 } from './models';
 
 export { TestConnection } from './config/db';
