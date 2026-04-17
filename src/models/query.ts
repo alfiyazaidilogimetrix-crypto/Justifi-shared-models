@@ -26,12 +26,11 @@ export interface QueryCreationAttributes extends Optional<
   | 'medias'
   | 'createdAt'
   | 'updatedAt'
-> {}
+> { }
 
 class Query
   extends Model<QueryAttributes, QueryCreationAttributes>
-  implements QueryAttributes
-{
+  implements QueryAttributes {
   public id!: number;
   public user_id!: number;
   public query!: string;

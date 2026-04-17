@@ -32,6 +32,8 @@ import WorkspaceMember from './team_member';
 import Folder from './folder';
 import FileShare from './file_share';
 import IPR_Document from './ipr';
+import Plan from './plan';
+import Payment from './payment';
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -229,6 +231,18 @@ MessageStatus.belongsTo(Message, {
   foreignKey: 'message_id',
 });
 
+// ─── User ↔ Plan ────────────────────────────────────────────────────────────
+User.belongsTo(Plan, { foreignKey: 'plan_id', as: 'currentPlan' });
+Plan.hasMany(User, { foreignKey: 'plan_id', as: 'users' });
+
+// ─── User ↔ Payment ─────────────────────────────────────────────────────────
+User.hasMany(Payment, { foreignKey: 'user_id', as: 'payments' });
+Payment.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+
+// ─── Plan ↔ Payment ─────────────────────────────────────────────────────────
+Plan.hasMany(Payment, { foreignKey: 'plan_id', as: 'payments' });
+Payment.belongsTo(Plan, { foreignKey: 'plan_id', as: 'plan' });
+
 // ─── ChatGroup ↔ GroupMember ─────────────────────────────────────────────
 ChatGroup.hasMany(GroupMember, {
   foreignKey: 'group_id',
@@ -384,4 +398,6 @@ export {
   Folder,
   FileShare,
   IPR_Document,
+  Plan,
+  Payment,
 };
