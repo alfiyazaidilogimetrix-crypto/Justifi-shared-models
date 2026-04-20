@@ -17,6 +17,8 @@ export interface UserAttributes {
   subscription_status?: boolean;
   subscription_date?: Date;
   googleId?: string;
+  district_data_id?: string[];
+  state_id?: string[];
 }
 
 /**
@@ -34,6 +36,8 @@ export interface UserCreationAttributes extends Optional<
   | 'subscription_status'
   | 'subscription_date'
   | 'googleId'
+  | 'district_data_id'
+  | 'state_id'
 > { }
 
 /**
@@ -54,6 +58,8 @@ class User
   public subscription_status?: boolean;
   public subscription_date?: Date;
   public googleId?: string;
+  public district_data_id?: string[];
+  public state_id?: string[];
 }
 
 User.init(
@@ -108,7 +114,13 @@ User.init(
     googleId: {
       type: DataTypes.STRING,
       allowNull: true,
-    }
+    },
+    district_data_id: {
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+      allowNull: true,
+    },
+    state_id: { type: DataTypes.ARRAY(DataTypes.TEXT), allowNull: true },
+
   },
   {
     sequelize,
