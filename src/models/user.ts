@@ -16,6 +16,7 @@ export interface UserAttributes {
   firm_id?: number;
   subscription_status?: boolean;
   subscription_date?: Date;
+  googleId?: string;
 }
 
 /**
@@ -32,15 +33,15 @@ export interface UserCreationAttributes extends Optional<
   | 'firm_id'
   | 'subscription_status'
   | 'subscription_date'
-> {}
+  | 'googleId'
+> { }
 
 /**
  * User Model
  */
 class User
   extends Model<UserAttributes, UserCreationAttributes>
-  implements UserAttributes
-{
+  implements UserAttributes {
   public user_id!: number;
   public username!: string;
   public email!: string;
@@ -52,6 +53,7 @@ class User
   public firm_id?: number;
   public subscription_status?: boolean;
   public subscription_date?: Date;
+  public googleId?: string;
 }
 
 User.init(
@@ -103,6 +105,10 @@ User.init(
       type: DataTypes.DATE,
       allowNull: true,
     },
+    googleId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   },
   {
     sequelize,
