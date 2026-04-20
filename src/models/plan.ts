@@ -11,6 +11,7 @@ export interface PlanAttributes {
     duration: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime';
     is_active: boolean;
     is_recommended: boolean;
+    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL';
     features?: string[];
     createdAt?: Date;
     updatedAt?: Date;
@@ -25,6 +26,7 @@ export interface PlanCreationAttributes extends Optional<
     | 'is_active'
     | 'is_recommended'
     | 'features'
+    | 'plan_type'
     | 'createdAt'
     | 'updatedAt'
 > { }
@@ -40,6 +42,7 @@ class Plan
     public duration!: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime';
     public is_active!: boolean;
     public is_recommended!: boolean;
+    public plan_type!: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL';
     public features!: any;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
@@ -61,6 +64,10 @@ Plan.init(
 
         description: {
             type: DataTypes.TEXT,
+            allowNull: true,
+        },
+        plan_type: {
+            type: DataTypes.ENUM('CALLING', 'EMERGENCY', 'LAWYER_MONTHLY', 'LAWYER_YEARLY', 'LAWYER_TRIAL'),
             allowNull: true,
         },
 
