@@ -179,9 +179,6 @@ User.hasMany(Query, { foreignKey: 'user_id', as: 'queries' });
 Ticket.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(Ticket, { foreignKey: 'user_id', as: 'tickets' });
 
-// ─── LegalArea ↔ Ticket (category) ───────────────────────────────────────────
-Ticket.belongsTo(LegalArea, { foreignKey: 'category', as: 'legalArea' });
-LegalArea.hasMany(Ticket, { foreignKey: 'category', as: 'tickets' });
 
 // ─── User ↔ Complaint ───────────────────────────────────────────────────────
 Complaint.belongsTo(User, { foreignKey: 'raised_by', as: 'raisedBy' });

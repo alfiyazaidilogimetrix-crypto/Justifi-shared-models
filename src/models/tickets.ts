@@ -13,9 +13,6 @@ export interface MessageType {
 export interface TicketAttributes {
     id: number;
     title: string;
-    description: string;
-    category: number;
-    query: string;
     is_closed: boolean;
     user_id?: number;
     messages?: MessageType[];
@@ -28,10 +25,7 @@ export interface TicketAttributes {
 export interface TicketCreationAttributes extends Optional<
     TicketAttributes,
     | 'id'
-    | 'query'
     | 'title'
-    | 'description'
-    | 'category'
     | 'is_closed'
     | 'user_id'
     | 'messages'
@@ -46,10 +40,7 @@ class Ticket
     implements TicketAttributes {
     public id!: number;
     public user_id!: number;
-    public query!: string;
     public title!: string;
-    public description!: string;
-    public category!: number;
     public is_closed!: boolean;
     public messages!: MessageType[];
     public expires_at!: Date;
@@ -75,25 +66,6 @@ Ticket.init(
         title: {
             type: DataTypes.STRING,
             allowNull: true,
-        },
-
-        description: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-
-        category: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'legal_area',
-                key: 'id',
-            },
-        },
-
-        query: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
 
         is_closed: {
@@ -127,4 +99,4 @@ Ticket.init(
     },
 );
 
-export default Ticket;
+export default Ticket;
