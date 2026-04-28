@@ -8,6 +8,7 @@ import Lawyer from './lawyer';
 import Junior from './junior';
 import LegalArea, { LegalAreaAttributes, LegalAreaCreationAttributes } from './legal_area';
 import Query, { QueryAttributes, QueryCreationAttributes } from './query';
+import Ticket, { TicketAttributes, TicketCreationAttributes } from './tickets';
 import QueryResponse, { QueryResponseAttributes, QueryResponseCreationAttributes } from './query_response';
 import Slot, { SlotAttributes, SlotCreationAttributes } from './slot';
 import RylawChat, { RylawChatAttributes, RylawChatCreationAttributes } from './rylaw_chat';
@@ -34,6 +35,7 @@ import FileShare from './file_share';
 import IPR_Document from './ipr';
 import Plan from './plan';
 import Payment from './payment';
+import Complaint, { ComplaintAttributes, ComplaintCreationAttributes } from './complain';
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -172,6 +174,21 @@ LegalArea.hasMany(Query, { foreignKey: 'category', as: 'queries' });
 // ─── User ↔ Query ───────────────────────────────────────────────────────────
 Query.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(Query, { foreignKey: 'user_id', as: 'queries' });
+
+// ─── User ↔ Ticket ──────────────────────────────────────────────────────────
+Ticket.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+User.hasMany(Ticket, { foreignKey: 'user_id', as: 'tickets' });
+
+// ─── LegalArea ↔ Ticket (category) ───────────────────────────────────────────
+Ticket.belongsTo(LegalArea, { foreignKey: 'category', as: 'legalArea' });
+LegalArea.hasMany(Ticket, { foreignKey: 'category', as: 'tickets' });
+
+// ─── User ↔ Complaint ───────────────────────────────────────────────────────
+Complaint.belongsTo(User, { foreignKey: 'raised_by', as: 'raisedBy' });
+User.hasMany(Complaint, { foreignKey: 'raised_by', as: 'raisedComplaints' });
+
+Complaint.belongsTo(User, { foreignKey: 'against_user', as: 'againstUser' });
+User.hasMany(Complaint, { foreignKey: 'against_user', as: 'receivedComplaints' });
 
 // ─── CallLog associations ───────────────────────────────────────────────────
 CallLog.belongsTo(User, { foreignKey: 'fromUserId', as: 'fromUser' });
@@ -372,6 +389,7 @@ export {
   LegalArea, LegalAreaAttributes, LegalAreaCreationAttributes,
   Contract,
   Query, QueryAttributes, QueryCreationAttributes,
+  Ticket, TicketAttributes, TicketCreationAttributes,
   QueryResponse, QueryResponseAttributes, QueryResponseCreationAttributes,
   Slot, SlotAttributes, SlotCreationAttributes,
   RylawChat, RylawChatAttributes, RylawChatCreationAttributes,
@@ -400,4 +418,5 @@ export {
   IPR_Document,
   Plan,
   Payment,
+  Complaint, ComplaintAttributes, ComplaintCreationAttributes,
 };

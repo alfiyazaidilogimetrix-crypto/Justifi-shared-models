@@ -19,6 +19,9 @@ export interface UserAttributes {
   googleId?: string;
   district_data_id?: string[];
   state_id?: string[];
+  is_blocked?: boolean;
+  block_reason?: string;
+  blocked_at?: Date;
 }
 
 /**
@@ -38,6 +41,9 @@ export interface UserCreationAttributes extends Optional<
   | 'googleId'
   | 'district_data_id'
   | 'state_id'
+  | 'is_blocked'
+  | 'block_reason'
+  | 'blocked_at'
 > { }
 
 /**
@@ -60,6 +66,9 @@ class User
   public googleId?: string;
   public district_data_id?: string[];
   public state_id?: string[];
+  public is_blocked?: boolean;
+  public block_reason?: string;
+  public blocked_at?: Date;
 }
 
 User.init(
@@ -120,7 +129,9 @@ User.init(
       allowNull: true,
     },
     state_id: { type: DataTypes.ARRAY(DataTypes.TEXT), allowNull: true },
-
+    is_blocked: { type: DataTypes.BOOLEAN, allowNull: true, defaultValue: false },
+    block_reason: { type: DataTypes.TEXT, allowNull: true },
+    blocked_at: { type: DataTypes.DATE, allowNull: true },
   },
   {
     sequelize,
