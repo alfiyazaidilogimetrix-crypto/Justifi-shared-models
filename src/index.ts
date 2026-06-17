@@ -37,6 +37,7 @@ export {
   IPR_Document,
   Plan,
   Payment,
+  Ticket
 } from './models';
 
 export { TestConnection } from './config/db';
