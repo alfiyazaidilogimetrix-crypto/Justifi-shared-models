@@ -14,13 +14,16 @@ export interface SlotAttributes {
   dateAndTime: DateAndTime[];
   fromUser: number;
   toUser: number;
+  consultationStatus?: 'PENDING' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED';
+  totalCallDuration?: number;
+  payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
   created_at?: Date;
   updated_at?: Date;
 }
 
 export interface SlotCreationAttributes extends Optional<
   SlotAttributes,
-  'id' | 'isExpire' | 'created_at' | 'updated_at'
+  'id' | 'isExpire' | 'created_at' | 'updated_at' | 'consultationStatus' | 'totalCallDuration' | 'payoutStatus'
 > {}
 
 class Slot
@@ -34,6 +37,9 @@ class Slot
   public dateAndTime!: DateAndTime[];
   public fromUser!: number;
   public toUser!: number;
+  public consultationStatus?: 'PENDING' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED';
+  public totalCallDuration?: number;
+  public payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
   public created_at?: Date;
   public updated_at?: Date;
 }
@@ -69,6 +75,21 @@ Slot.init(
     toUser: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    consultationStatus: {
+      type: DataTypes.ENUM('PENDING', 'SATISFIED', 'UNSATISFIED', 'AUTO_SATISFIED'),
+      allowNull: true,
+      defaultValue: 'PENDING',
+    },
+    totalCallDuration: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    payoutStatus: {
+      type: DataTypes.ENUM('PENDING', 'SUCCESS', 'FAILED'),
+      allowNull: true,
+      defaultValue: 'PENDING',
     },
   },
   {
