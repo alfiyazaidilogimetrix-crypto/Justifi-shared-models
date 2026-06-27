@@ -14,7 +14,7 @@ export interface SlotAttributes {
   dateAndTime: DateAndTime[];
   fromUser: number;
   toUser: number;
-  consultationStatus?: 'PENDING' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED';
+  consultationStatus?: 'PENDING' | 'BOOKED' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED';
   totalCallDuration?: number;
   payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
   created_at?: Date;
@@ -37,7 +37,7 @@ class Slot
   public dateAndTime!: DateAndTime[];
   public fromUser!: number;
   public toUser!: number;
-  public consultationStatus?: 'PENDING' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED';
+  public consultationStatus?: 'PENDING' | 'BOOKED' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED';
   public totalCallDuration?: number;
   public payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
   public created_at?: Date;
@@ -77,7 +77,7 @@ Slot.init(
       allowNull: false,
     },
     consultationStatus: {
-      type: DataTypes.ENUM('PENDING', 'SATISFIED', 'UNSATISFIED', 'AUTO_SATISFIED'),
+      type: DataTypes.ENUM('PENDING', 'BOOKED', 'SATISFIED', 'UNSATISFIED', 'AUTO_SATISFIED'),
       allowNull: true,
       defaultValue: 'PENDING',
     },
