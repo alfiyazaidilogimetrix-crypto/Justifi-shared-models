@@ -8,8 +8,8 @@ export interface FileAttributes {
   original_name: string;
   mime_type: string;
   size: number;
-  file_path: string;
-  file_content: Buffer;
+  file_url: string;
+  folder_name: string;
   folder_id?: number; // Optional foreign key to Folder
   workspace_id?: number; // Optional foreign key to Workspace
   owner_id?: number; // Optional foreign key to User
@@ -31,8 +31,8 @@ class File
   public original_name!: string;
   public mime_type!: string;
   public size!: number;
-  public file_path!: string;
-  public file_content!: Buffer;
+  public folder_name!: string;
+  public file_url!: string;
   public folder_id?: number;
   public workspace_id?: number;
   public owner_id?: number;
@@ -49,17 +49,17 @@ File.init(
       autoIncrement: true,
     },
     filename: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING,
       allowNull: false,
       comment: 'Generated filename for storage',
     },
     original_name: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING,
       allowNull: false,
       comment: 'Original filename from user',
     },
     mime_type: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING,
       allowNull: false,
       comment: 'MIME type of the file',
     },
@@ -71,15 +71,14 @@ File.init(
         min: 0,
       },
     },
-    file_path: {
-      type: DataTypes.STRING(500),
-      allowNull: false,
-      comment: 'Path to the stored file',
+    folder_name: {
+        type: DataTypes.STRING,
+        allowNull: true,
     },
-    file_content: {
-      type: DataTypes.BLOB('long'),
-      allowNull: false,
-      comment: 'Actual file content stored in database',
+
+    file_url: {
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     folder_id: {
       type: DataTypes.INTEGER,

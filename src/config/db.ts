@@ -31,9 +31,9 @@ if (useSSL) {
 }
 
 const sequelize = new Sequelize(
-  process.env.PG_DB as string,
+  (process.env.PG_NAME || process.env.PG_DB) as string,
   process.env.PG_USER as string,
-  process.env.PG_PASS as string,
+  (process.env.PG_PASSWORD || process.env.PG_PASS) as string,
   {
     host: process.env.PG_HOST,
     port: Number(process.env.PG_PORT) || 5432,
