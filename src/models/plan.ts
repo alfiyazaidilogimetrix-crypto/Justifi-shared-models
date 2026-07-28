@@ -11,7 +11,7 @@ export interface PlanAttributes {
     duration: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime';
     is_active: boolean;
     is_recommended: boolean;
-    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT';
+    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN';
     features?: string[];
     createdAt?: Date;
     updatedAt?: Date;
@@ -42,7 +42,7 @@ class Plan
     public duration!: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime';
     public is_active!: boolean;
     public is_recommended!: boolean;
-    public plan_type!: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT';
+    public plan_type!: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT'| 'ENTERPRISE_PLAN';
     public features!: any;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
@@ -67,7 +67,7 @@ Plan.init(
             allowNull: true,
         },
         plan_type: {
-            type: DataTypes.ENUM('CALLING', 'EMERGENCY', 'LAWYER_MONTHLY', 'LAWYER_YEARLY', 'LAWYER_TRIAL', 'RYLAW_BOT'),
+            type: DataTypes.ENUM('CALLING', 'EMERGENCY', 'LAWYER_MONTHLY', 'LAWYER_YEARLY', 'LAWYER_TRIAL', 'RYLAW_BOT', 'ENTERPRISE_PLAN'),
             allowNull: true,
         },
 
