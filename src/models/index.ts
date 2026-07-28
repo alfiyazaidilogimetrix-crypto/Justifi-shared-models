@@ -36,6 +36,7 @@ import IPR_Document from './ipr';
 import Plan from './plan';
 import Payment from './payment';
 import Complaint, { ComplaintAttributes, ComplaintCreationAttributes } from './complain';
+import ConsultationFeedback, { ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes } from './consultation_feedback';
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -179,6 +180,16 @@ User.hasMany(Query, { foreignKey: 'user_id', as: 'queries' });
 Ticket.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(Ticket, { foreignKey: 'user_id', as: 'tickets' });
 
+// ─── Ticket ↔ Query ─────────────────────────────────────────────────────────
+Ticket.belongsTo(Query, { foreignKey: 'query_id', as: 'query' });
+Query.hasMany(Ticket, { foreignKey: 'query_id', as: 'tickets' });
+
+// ─── ConsultationFeedback ↔ User & Lawyer ───────────────────────────────────
+ConsultationFeedback.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+User.hasMany(ConsultationFeedback, { foreignKey: 'user_id', as: 'feedbacks' });
+
+ConsultationFeedback.belongsTo(Lawyer, { foreignKey: 'lawyer_id', as: 'lawyer' });
+Lawyer.hasMany(ConsultationFeedback, { foreignKey: 'lawyer_id', as: 'feedbacks' });
 
 // ─── User ↔ Complaint ───────────────────────────────────────────────────────
 Complaint.belongsTo(User, { foreignKey: 'raised_by', as: 'raisedBy' });
@@ -416,4 +427,5 @@ export {
   Plan,
   Payment,
   Complaint, ComplaintAttributes, ComplaintCreationAttributes,
+  ConsultationFeedback, ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes,
 };

@@ -15,6 +15,7 @@ export interface TicketAttributes {
     title: string;
     is_closed: boolean;
     user_id?: number;
+    query_id?: number;
     messages?: MessageType[];
     expires_at?: Date;
     status?: 'open' | 'in_progress' | 'resolved' | 'closed';
@@ -28,6 +29,7 @@ export interface TicketCreationAttributes extends Optional<
     | 'title'
     | 'is_closed'
     | 'user_id'
+    | 'query_id'
     | 'messages'
     | 'expires_at'
     | 'status'
@@ -40,6 +42,7 @@ class Ticket
     implements TicketAttributes {
     public id!: number;
     public user_id!: number;
+    public query_id!: number;
     public title!: string;
     public is_closed!: boolean;
     public messages!: MessageType[];
@@ -61,6 +64,12 @@ Ticket.init(
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+
+        query_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            comment: 'FK to Query',
         },
 
         title: {
