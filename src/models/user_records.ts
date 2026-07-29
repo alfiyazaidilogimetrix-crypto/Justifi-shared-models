@@ -22,6 +22,7 @@ export interface UserRecordAttributes {
   payment_id?: string;
   payment_status?: 'SUCCESS' | 'FAILED' | 'PENDING';
   is_trial_buy?: boolean;
+  plan_purchased_count?: number;
   created_at?: Date;
   updated_at?: Date;
 }
@@ -44,6 +45,7 @@ export interface UserRecordCreationAttributes extends Optional<
   | 'payment_id'
   | 'payment_status'
   | 'is_trial_buy'
+  | 'plan_purchased_count'
   | 'created_at'
   | 'updated_at'
 > { }
@@ -71,6 +73,7 @@ class UserRecord
   public payment_id?: string;
   public payment_status?: 'SUCCESS' | 'FAILED' | 'PENDING';
   public is_trial_buy?: boolean;
+  public plan_purchased_count?: number;
   public created_at?: Date;
   public updated_at?: Date;
 }
@@ -165,6 +168,10 @@ UserRecord.init(
     is_trial_buy: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+    },
+    plan_purchased_count: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
     }
   },
   {
