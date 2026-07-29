@@ -201,6 +201,8 @@ User.hasMany(Complaint, { foreignKey: 'against_user', as: 'receivedComplaints' }
 // ─── CallLog associations ───────────────────────────────────────────────────
 CallLog.belongsTo(User, { foreignKey: 'fromUserId', as: 'fromUser' });
 CallLog.belongsTo(User, { foreignKey: 'toUserId', as: 'toUser' });
+CallLog.belongsTo(Slot, { foreignKey: 'slot_id', as: 'slot' });
+Slot.hasMany(CallLog, { foreignKey: 'slot_id', as: 'callLogs' });
 
 // ─── Contract associations──────────────────────────────────────────────
 Contract.belongsTo(User, { foreignKey: 'user_id', as: 'user' });

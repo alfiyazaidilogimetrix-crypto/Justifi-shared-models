@@ -17,13 +17,14 @@ export interface SlotAttributes {
   consultationStatus?: 'PENDING' | 'BOOKED' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED'  | 'ACCEPTED'| 'REJECTED'
   totalCallDuration?: number;
   payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
+  follow_up_enabled?: boolean;
   created_at?: Date;
   updated_at?: Date;
 }
 
 export interface SlotCreationAttributes extends Optional<
   SlotAttributes,
-  'id' | 'isExpire' | 'created_at' | 'updated_at' | 'consultationStatus' | 'totalCallDuration' | 'payoutStatus'
+  'id' | 'isExpire' | 'created_at' | 'updated_at' | 'consultationStatus' | 'totalCallDuration' | 'payoutStatus' | 'follow_up_enabled'
 > {}
 
 class Slot
@@ -40,6 +41,7 @@ class Slot
   public consultationStatus?: 'PENDING' | 'BOOKED' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED'| 'ACCEPTED'| 'REJECTED'
   public totalCallDuration?: number;
   public payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
+  public follow_up_enabled?: boolean;
   public created_at?: Date;
   public updated_at?: Date;
 }
@@ -90,6 +92,11 @@ Slot.init(
       type: DataTypes.ENUM('PENDING', 'SUCCESS', 'FAILED'),
       allowNull: true,
       defaultValue: 'PENDING',
+    },
+    follow_up_enabled: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
     },
   },
   {
