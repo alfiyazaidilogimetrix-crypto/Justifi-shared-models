@@ -37,7 +37,10 @@ export {
   IPR_Document,
   Plan,
   Payment,
-  Ticket
+  Ticket,
+  ConsultationFeedback, ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes,
+  Complaint, ComplaintAttributes, ComplaintCreationAttributes,
+  FollowUpOffer, FollowUpOfferAttributes, FollowUpOfferCreationAttributes,
 } from './models';
 
 export { TestConnection } from './config/db';
