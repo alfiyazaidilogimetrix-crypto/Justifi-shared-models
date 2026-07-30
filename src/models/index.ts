@@ -37,6 +37,7 @@ import Plan from './plan';
 import Payment from './payment';
 import Complaint, { ComplaintAttributes, ComplaintCreationAttributes } from './complain';
 import ConsultationFeedback, { ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes } from './consultation_feedback';
+import FollowUpOffer, { FollowUpOfferAttributes, FollowUpOfferCreationAttributes } from './follow_up_offer';
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -203,6 +204,10 @@ CallLog.belongsTo(User, { foreignKey: 'fromUserId', as: 'fromUser' });
 CallLog.belongsTo(User, { foreignKey: 'toUserId', as: 'toUser' });
 CallLog.belongsTo(Slot, { foreignKey: 'slot_id', as: 'slot' });
 Slot.hasMany(CallLog, { foreignKey: 'slot_id', as: 'callLogs' });
+
+// ─── FollowUpOffer associations ────────────────────────────────────────
+FollowUpOffer.belongsTo(Slot, { foreignKey: 'slot_id', as: 'slot' });
+Slot.hasMany(FollowUpOffer, { foreignKey: 'slot_id', as: 'followUpOffers' });
 
 // ─── Contract associations──────────────────────────────────────────────
 Contract.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
@@ -430,4 +435,5 @@ export {
   Payment,
   Complaint, ComplaintAttributes, ComplaintCreationAttributes,
   ConsultationFeedback, ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes,
+  FollowUpOffer, FollowUpOfferAttributes, FollowUpOfferCreationAttributes,
 };
