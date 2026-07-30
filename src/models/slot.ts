@@ -14,7 +14,7 @@ export interface SlotAttributes {
   dateAndTime: DateAndTime[];
   fromUser: number;
   toUser: number;
-  consultationStatus?: 'PENDING' | 'BOOKED' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED'  | 'ACCEPTED'| 'REJECTED'
+  consultationStatus?: 'PENDING' | 'BOOKED' | 'RESCHEDULED' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED'  | 'ACCEPTED'| 'REJECTED'
   totalCallDuration?: number;
   payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
   follow_up_enabled?: boolean;
@@ -38,7 +38,7 @@ class Slot
   public dateAndTime!: DateAndTime[];
   public fromUser!: number;
   public toUser!: number;
-  public consultationStatus?: 'PENDING' | 'BOOKED' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED'| 'ACCEPTED'| 'REJECTED'
+  public consultationStatus?: 'PENDING' | 'BOOKED' | 'RESCHEDULED' | 'SATISFIED' | 'UNSATISFIED' | 'AUTO_SATISFIED'| 'ACCEPTED'| 'REJECTED'
   public totalCallDuration?: number;
   public payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
   public follow_up_enabled?: boolean;
@@ -79,7 +79,7 @@ Slot.init(
       allowNull: false,
     },
     consultationStatus: {
-      type: DataTypes.ENUM('PENDING', 'BOOKED', 'SATISFIED', 'UNSATISFIED', 'AUTO_SATISFIED', 'ACCEPTED', 'REJECTED'),
+      type: DataTypes.ENUM('PENDING', 'BOOKED', 'RESCHEDULED', 'SATISFIED', 'UNSATISFIED', 'AUTO_SATISFIED', 'ACCEPTED', 'REJECTED'),
       allowNull: true,
       defaultValue: 'PENDING',
     },
