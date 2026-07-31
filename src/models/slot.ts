@@ -3,7 +3,8 @@ import sequelize from '../config/db';
 
 export interface DateAndTime {
   date: string;
-  time: string;
+  startTime: string;
+  endTime: string;
 }
 
 export interface SlotAttributes {
