@@ -15,10 +15,11 @@ export interface SlotAttributes {
     totalCallDuration?: number;
     payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
     follow_up_enabled?: boolean;
+    is_used?: boolean;
     created_at?: Date;
     updated_at?: Date;
 }
-export interface SlotCreationAttributes extends Optional<SlotAttributes, 'id' | 'isExpire' | 'created_at' | 'updated_at' | 'consultationStatus' | 'totalCallDuration' | 'payoutStatus' | 'follow_up_enabled'> {
+export interface SlotCreationAttributes extends Optional<SlotAttributes, 'id' | 'isExpire' | 'created_at' | 'updated_at' | 'consultationStatus' | 'totalCallDuration' | 'payoutStatus' | 'follow_up_enabled' | 'is_used'> {
 }
 declare class Slot extends Model<SlotAttributes, SlotCreationAttributes> implements SlotAttributes {
     id: number;
@@ -32,6 +33,7 @@ declare class Slot extends Model<SlotAttributes, SlotCreationAttributes> impleme
     totalCallDuration?: number;
     payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
     follow_up_enabled?: boolean;
+    is_used?: boolean;
     created_at?: Date;
     updated_at?: Date;
 }

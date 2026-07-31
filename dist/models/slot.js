@@ -58,6 +58,11 @@ Slot.init({
         allowNull: true,
         defaultValue: false,
     },
+    is_used: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false,
+    },
 }, {
     sequelize: db_1.default,
     tableName: 'slots',

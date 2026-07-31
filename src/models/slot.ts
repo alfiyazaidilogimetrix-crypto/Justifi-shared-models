@@ -18,13 +18,14 @@ export interface SlotAttributes {
   totalCallDuration?: number;
   payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
   follow_up_enabled?: boolean;
+  is_used?: boolean;
   created_at?: Date;
   updated_at?: Date;
 }
 
 export interface SlotCreationAttributes extends Optional<
   SlotAttributes,
-  'id' | 'isExpire' | 'created_at' | 'updated_at' | 'consultationStatus' | 'totalCallDuration' | 'payoutStatus' | 'follow_up_enabled'
+  'id' | 'isExpire' | 'created_at' | 'updated_at' | 'consultationStatus' | 'totalCallDuration' | 'payoutStatus' | 'follow_up_enabled' | 'is_used'
 > {}
 
 class Slot
@@ -42,6 +43,7 @@ class Slot
   public totalCallDuration?: number;
   public payoutStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
   public follow_up_enabled?: boolean;
+  public is_used?: boolean;
   public created_at?: Date;
   public updated_at?: Date;
 }
@@ -94,6 +96,11 @@ Slot.init(
       defaultValue: 'PENDING',
     },
     follow_up_enabled: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
+    },
+    is_used: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: false,
