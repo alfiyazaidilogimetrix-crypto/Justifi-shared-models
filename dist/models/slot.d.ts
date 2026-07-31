@@ -1,7 +1,8 @@
 import { Model, Optional } from 'sequelize';
 export interface DateAndTime {
     date: string;
-    time: string;
+    startTime: string;
+    endTime: string;
 }
 export interface SlotAttributes {
     id: number;
