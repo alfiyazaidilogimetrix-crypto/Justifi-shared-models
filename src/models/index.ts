@@ -39,6 +39,13 @@ import Complaint, { ComplaintAttributes, ComplaintCreationAttributes } from './c
 import ConsultationFeedback, { ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes } from './consultation_feedback';
 import FollowUpOffer, { FollowUpOfferAttributes, FollowUpOfferCreationAttributes } from './follow_up_offer';
 import Notification, { NotificationAttributes, NotificationCreationAttributes } from './notification';
+import PriorityConsultation, { PriorityConsultationAttributes, PriorityConsultationCreationAttributes } from './priority_consultation';
+
+// ─── PriorityConsultation ↔ User & Lawyer ───────────────────────────────────
+PriorityConsultation.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+User.hasMany(PriorityConsultation, { foreignKey: 'user_id', as: 'priorityConsultations' });
+PriorityConsultation.belongsTo(Lawyer, { foreignKey: 'accepted_lawyer_id', as: 'acceptedLawyer' });
+Lawyer.hasMany(PriorityConsultation, { foreignKey: 'accepted_lawyer_id', as: 'acceptedConsultations' });
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -433,6 +440,7 @@ export {
   FileShare,
   IPR_Document,
   Plan,
+  PriorityConsultation, PriorityConsultationAttributes, PriorityConsultationCreationAttributes,
   Payment,
   Complaint, ComplaintAttributes, ComplaintCreationAttributes,
   ConsultationFeedback, ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes,

@@ -42,6 +42,7 @@ export {
   Complaint, ComplaintAttributes, ComplaintCreationAttributes,
   FollowUpOffer, FollowUpOfferAttributes, FollowUpOfferCreationAttributes,
   Notification, NotificationAttributes, NotificationCreationAttributes,
+  PriorityConsultation, PriorityConsultationAttributes, PriorityConsultationCreationAttributes,
 } from './models';
 
 export { TestConnection } from './config/db';
