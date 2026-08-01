@@ -38,6 +38,7 @@ import Payment from './payment';
 import Complaint, { ComplaintAttributes, ComplaintCreationAttributes } from './complain';
 import ConsultationFeedback, { ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes } from './consultation_feedback';
 import FollowUpOffer, { FollowUpOfferAttributes, FollowUpOfferCreationAttributes } from './follow_up_offer';
+import Notification, { NotificationAttributes, NotificationCreationAttributes } from './notification';
 
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 User.hasOne(UserRecord, { foreignKey: 'user_id', as: 'userRecord' });
@@ -436,4 +437,5 @@ export {
   Complaint, ComplaintAttributes, ComplaintCreationAttributes,
   ConsultationFeedback, ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes,
   FollowUpOffer, FollowUpOfferAttributes, FollowUpOfferCreationAttributes,
+  Notification, NotificationAttributes, NotificationCreationAttributes,
 };

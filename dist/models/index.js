@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FollowUpOffer = exports.ConsultationFeedback = exports.Complaint = exports.Payment = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Ticket = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
+exports.Notification = exports.FollowUpOffer = exports.ConsultationFeedback = exports.Complaint = exports.Payment = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Ticket = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
 const db_1 = __importDefault(require("../config/db"));
 exports.sequelize = db_1.default;
 // ─── Model Imports ───────────────────────────────────────────────────────────
@@ -84,6 +84,8 @@ const consultation_feedback_1 = __importDefault(require("./consultation_feedback
 exports.ConsultationFeedback = consultation_feedback_1.default;
 const follow_up_offer_1 = __importDefault(require("./follow_up_offer"));
 exports.FollowUpOffer = follow_up_offer_1.default;
+const notification_1 = __importDefault(require("./notification"));
+exports.Notification = notification_1.default;
 // ─── User ↔ UserRecord ──────────────────────────────────────────────────────
 user_1.default.hasOne(user_records_1.default, { foreignKey: 'user_id', as: 'userRecord' });
 user_records_1.default.belongsTo(user_1.default, { foreignKey: 'user_id', as: 'user' });

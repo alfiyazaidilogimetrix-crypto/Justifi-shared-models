@@ -41,6 +41,7 @@ export {
   ConsultationFeedback, ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes,
   Complaint, ComplaintAttributes, ComplaintCreationAttributes,
   FollowUpOffer, FollowUpOfferAttributes, FollowUpOfferCreationAttributes,
+  Notification, NotificationAttributes, NotificationCreationAttributes,
 } from './models';
 
 export { TestConnection } from './config/db';

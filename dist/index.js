@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TestConnection = exports.FollowUpOffer = exports.Complaint = exports.ConsultationFeedback = exports.Ticket = exports.Payment = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
+exports.TestConnection = exports.Notification = exports.FollowUpOffer = exports.Complaint = exports.ConsultationFeedback = exports.Ticket = exports.Payment = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
 // Main entry point — re-export models, sequelize instance, and utilities
 var models_1 = require("./models");
 Object.defineProperty(exports, "sequelize", { enumerable: true, get: function () { return models_1.sequelize; } });
@@ -44,6 +44,7 @@ Object.defineProperty(exports, "Ticket", { enumerable: true, get: function () { 
 Object.defineProperty(exports, "ConsultationFeedback", { enumerable: true, get: function () { return models_1.ConsultationFeedback; } });
 Object.defineProperty(exports, "Complaint", { enumerable: true, get: function () { return models_1.Complaint; } });
 Object.defineProperty(exports, "FollowUpOffer", { enumerable: true, get: function () { return models_1.FollowUpOffer; } });
+Object.defineProperty(exports, "Notification", { enumerable: true, get: function () { return models_1.Notification; } });
 var db_1 = require("./config/db");
 Object.defineProperty(exports, "TestConnection", { enumerable: true, get: function () { return db_1.TestConnection; } });
 //# sourceMappingURL=index.js.map
