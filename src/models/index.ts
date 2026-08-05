@@ -60,9 +60,9 @@ UserDetails.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasOne(Lawyer, { foreignKey: 'user_id', as: 'lawyer' });
 Lawyer.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 
-// ─── User ↔ LawyerAvailability ──────────────────────────────────────────────
-User.hasOne(LawyerAvailability, { foreignKey: 'lawyerId', as: 'availability' });
-LawyerAvailability.belongsTo(User, { foreignKey: 'lawyerId', as: 'user' });
+// ─── Lawyer ↔ LawyerAvailability ─────────────────────────────────────────────
+Lawyer.hasMany(LawyerAvailability, { foreignKey: 'lawyerId', as: 'availabilities' });
+LawyerAvailability.belongsTo(Lawyer, { foreignKey: 'lawyerId', as: 'lawyer' });
 
 // ─── Lawyer ↔ Junior ────────────────────────────────────────────────────────
 Lawyer.hasMany(Junior, { foreignKey: 'lawyer_id', as: 'assignedJuniors' });

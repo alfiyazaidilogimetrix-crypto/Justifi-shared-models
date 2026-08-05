@@ -104,9 +104,9 @@ user_details_1.default.belongsTo(user_1.default, { foreignKey: 'user_id', as: 'u
 // ─── User ↔ Lawyer ──────────────────────────────────────────────────────────
 user_1.default.hasOne(lawyer_1.default, { foreignKey: 'user_id', as: 'lawyer' });
 lawyer_1.default.belongsTo(user_1.default, { foreignKey: 'user_id', as: 'user' });
-// ─── User ↔ LawyerAvailability ──────────────────────────────────────────────
-user_1.default.hasOne(available_time_1.default, { foreignKey: 'lawyerId', as: 'availability' });
-available_time_1.default.belongsTo(user_1.default, { foreignKey: 'lawyerId', as: 'user' });
+// ─── Lawyer ↔ LawyerAvailability ─────────────────────────────────────────────
+lawyer_1.default.hasMany(available_time_1.default, { foreignKey: 'lawyerId', as: 'availabilities' });
+available_time_1.default.belongsTo(lawyer_1.default, { foreignKey: 'lawyerId', as: 'lawyer' });
 // ─── Lawyer ↔ Junior ────────────────────────────────────────────────────────
 lawyer_1.default.hasMany(junior_1.default, { foreignKey: 'lawyer_id', as: 'assignedJuniors' });
 junior_1.default.belongsTo(lawyer_1.default, { foreignKey: 'lawyer_id', as: 'assignedLawyer' });

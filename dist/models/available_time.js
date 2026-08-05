@@ -17,6 +17,10 @@ LawyerAvailability.init({
     lawyerId: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: 'lawyers',
+            key: 'id',
+        },
     },
     availability: {
         type: sequelize_1.DataTypes.JSON, // MySQL me DataTypes.JSON use karna

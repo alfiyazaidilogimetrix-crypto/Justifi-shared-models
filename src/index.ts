@@ -43,6 +43,7 @@ export {
   FollowUpOffer, FollowUpOfferAttributes, FollowUpOfferCreationAttributes,
   Notification, NotificationAttributes, NotificationCreationAttributes,
   PriorityConsultation, PriorityConsultationAttributes, PriorityConsultationCreationAttributes,
+  LawyerAvailability, LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes,
 } from './models';
 
 export { TestConnection } from './config/db';

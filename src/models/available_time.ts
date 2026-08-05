@@ -94,6 +94,10 @@ LawyerAvailability.init(
     lawyerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'lawyers',
+        key: 'id',
+      },
     },
 
     availability: {
