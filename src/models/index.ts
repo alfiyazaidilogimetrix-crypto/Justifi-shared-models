@@ -40,6 +40,7 @@ import ConsultationFeedback, { ConsultationFeedbackAttributes, ConsultationFeedb
 import FollowUpOffer, { FollowUpOfferAttributes, FollowUpOfferCreationAttributes } from './follow_up_offer';
 import Notification, { NotificationAttributes, NotificationCreationAttributes } from './notification';
 import PriorityConsultation, { PriorityConsultationAttributes, PriorityConsultationCreationAttributes } from './priority_consultation';
+import LawyerAvailability, { LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes } from './available_time';
 
 // ─── PriorityConsultation ↔ User & Lawyer ───────────────────────────────────
 PriorityConsultation.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
@@ -58,6 +59,10 @@ UserDetails.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 // ─── User ↔ Lawyer ──────────────────────────────────────────────────────────
 User.hasOne(Lawyer, { foreignKey: 'user_id', as: 'lawyer' });
 Lawyer.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+
+// ─── User ↔ LawyerAvailability ──────────────────────────────────────────────
+User.hasOne(LawyerAvailability, { foreignKey: 'lawyerId', as: 'availability' });
+LawyerAvailability.belongsTo(User, { foreignKey: 'lawyerId', as: 'user' });
 
 // ─── Lawyer ↔ Junior ────────────────────────────────────────────────────────
 Lawyer.hasMany(Junior, { foreignKey: 'lawyer_id', as: 'assignedJuniors' });
@@ -446,4 +451,5 @@ export {
   ConsultationFeedback, ConsultationFeedbackAttributes, ConsultationFeedbackCreationAttributes,
   FollowUpOffer, FollowUpOfferAttributes, FollowUpOfferCreationAttributes,
   Notification, NotificationAttributes, NotificationCreationAttributes,
+  LawyerAvailability, LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes,
 };
