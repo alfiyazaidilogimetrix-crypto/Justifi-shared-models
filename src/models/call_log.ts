@@ -12,7 +12,7 @@ export interface CallLogAttributes {
   endTime?: Date | null | undefined;
   durationSeconds?: number;
   slot_id?: number;
-  call_category?: 'CONSULTATION' | 'FOLLOW_UP';
+  call_category?: 'CONSULTATION' | 'FOLLOW_UP' | 'EMERGENCY';
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -36,7 +36,7 @@ class CallLog
   public endTime?: Date;
   public durationSeconds?: number;
   public slot_id?: number;
-  public call_category?: 'CONSULTATION' | 'FOLLOW_UP';
+  public call_category?: 'CONSULTATION' | 'FOLLOW_UP' | 'EMERGENCY';
   public createdAt?: Date;
   public updatedAt?: Date;
 }
@@ -96,7 +96,7 @@ CallLog.init(
       },
     },
     call_category: {
-      type: DataTypes.ENUM('CONSULTATION', 'FOLLOW_UP'),
+      type: DataTypes.ENUM('CONSULTATION', 'FOLLOW_UP', 'EMERGENCY'),
       allowNull: true,
     },
   },

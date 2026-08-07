@@ -10,7 +10,7 @@ export interface CallLogAttributes {
     endTime?: Date | null | undefined;
     durationSeconds?: number;
     slot_id?: number;
-    call_category?: 'CONSULTATION' | 'FOLLOW_UP';
+    call_category?: 'CONSULTATION' | 'FOLLOW_UP' | 'EMERGENCY';
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -27,7 +27,7 @@ declare class CallLog extends Model<CallLogAttributes, CallLogCreationAttributes
     endTime?: Date;
     durationSeconds?: number;
     slot_id?: number;
-    call_category?: 'CONSULTATION' | 'FOLLOW_UP';
+    call_category?: 'CONSULTATION' | 'FOLLOW_UP' | 'EMERGENCY';
     createdAt?: Date;
     updatedAt?: Date;
 }

@@ -55,7 +55,7 @@ CallLog.init({
         },
     },
     call_category: {
-        type: sequelize_1.DataTypes.ENUM('CONSULTATION', 'FOLLOW_UP'),
+        type: sequelize_1.DataTypes.ENUM('CONSULTATION', 'FOLLOW_UP', 'EMERGENCY'),
         allowNull: true,
     },
 }, {
