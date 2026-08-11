@@ -22,6 +22,9 @@ export interface UserAttributes {
   is_blocked?: boolean;
   block_reason?: string;
   blocked_at?: Date;
+  city?: string;
+  state?: string;
+  preferred_language?: string;
 }
 
 /**
@@ -44,6 +47,9 @@ export interface UserCreationAttributes extends Optional<
   | 'is_blocked'
   | 'block_reason'
   | 'blocked_at'
+  | 'city'
+  | 'state'
+  | 'preferred_language'
 > { }
 
 /**
@@ -69,6 +75,9 @@ class User
   public is_blocked?: boolean;
   public block_reason?: string;
   public blocked_at?: Date;
+  public city?: string;
+  public state?: string;
+  public preferred_language?: string;
 }
 
 User.init(
@@ -132,6 +141,9 @@ User.init(
     is_blocked: { type: DataTypes.BOOLEAN, allowNull: true, defaultValue: false },
     block_reason: { type: DataTypes.TEXT, allowNull: true },
     blocked_at: { type: DataTypes.DATE, allowNull: true },
+    city: { type: DataTypes.STRING(255), allowNull: true },
+    state: { type: DataTypes.STRING(255), allowNull: true },
+    preferred_language: { type: DataTypes.STRING(255), allowNull: true },
   },
   {
     sequelize,
