@@ -70,6 +70,9 @@ User.init({
     is_blocked: { type: sequelize_1.DataTypes.BOOLEAN, allowNull: true, defaultValue: false },
     block_reason: { type: sequelize_1.DataTypes.TEXT, allowNull: true },
     blocked_at: { type: sequelize_1.DataTypes.DATE, allowNull: true },
+    city: { type: sequelize_1.DataTypes.STRING(255), allowNull: true },
+    state: { type: sequelize_1.DataTypes.STRING(255), allowNull: true },
+    preferred_language: { type: sequelize_1.DataTypes.STRING(255), allowNull: true },
 }, {
     sequelize: db_1.default,
     tableName: 'users',

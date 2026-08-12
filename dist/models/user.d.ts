@@ -20,11 +20,14 @@ export interface UserAttributes {
     is_blocked?: boolean;
     block_reason?: string;
     blocked_at?: Date;
+    city?: string;
+    state?: string;
+    preferred_language?: string;
 }
 /**
  * Attributes allowed during creation
  */
-export interface UserCreationAttributes extends Optional<UserAttributes, 'user_id' | 'encrypted_password' | 'master_password' | 'user_type' | 'plan_id' | 'parent_user_id' | 'firm_id' | 'subscription_status' | 'subscription_date' | 'googleId' | 'district_data_id' | 'state_id' | 'is_blocked' | 'block_reason' | 'blocked_at'> {
+export interface UserCreationAttributes extends Optional<UserAttributes, 'user_id' | 'encrypted_password' | 'master_password' | 'user_type' | 'plan_id' | 'parent_user_id' | 'firm_id' | 'subscription_status' | 'subscription_date' | 'googleId' | 'district_data_id' | 'state_id' | 'is_blocked' | 'block_reason' | 'blocked_at' | 'city' | 'state' | 'preferred_language'> {
 }
 /**
  * User Model
@@ -47,6 +50,9 @@ declare class User extends Model<UserAttributes, UserCreationAttributes> impleme
     is_blocked?: boolean;
     block_reason?: string;
     blocked_at?: Date;
+    city?: string;
+    state?: string;
+    preferred_language?: string;
 }
 export default User;
 //# sourceMappingURL=user.d.ts.map
