@@ -46,6 +46,7 @@ interface LawyerAttributes {
   address_line2?: string;
   landmark?: string;
   alternate_mobile_no?: string;
+  digital_pin?: string;
   user_id: number;
   Qualification?: string;
   experience?: string;
@@ -97,6 +98,7 @@ interface LawyerCreationAttributes extends Optional<
   | 'address_line2'
   | 'landmark'
   | 'alternate_mobile_no'
+  | 'digital_pin'
   | 'Qualification'
   | 'experience'
 > {}
@@ -149,6 +151,7 @@ class Lawyer
   public address_line2?: string;
   public landmark?: string;
   public alternate_mobile_no?: string;
+  public digital_pin?: string;
   public user_id!: number;
   public Qualification?: string;
   public experience?: string;
@@ -214,6 +217,7 @@ Lawyer.init(
     address_line2: { type: DataTypes.TEXT, allowNull: true },
     landmark: { type: DataTypes.TEXT, allowNull: true },
     alternate_mobile_no: { type: DataTypes.STRING, allowNull: true },
+    digital_pin: { type: DataTypes.STRING, allowNull: true },
     user_id: { type: DataTypes.INTEGER, allowNull: false },
     Qualification: { type: DataTypes.STRING, allowNull: true },
     experience: { type: DataTypes.STRING, allowNull: true },

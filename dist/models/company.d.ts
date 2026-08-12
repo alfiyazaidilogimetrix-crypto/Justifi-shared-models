@@ -28,12 +28,13 @@ interface CompanyAttributes {
     contact_email: string;
     contact_phone: string;
     is_claimed_itc?: boolean;
+    digital_pin?: string;
     user_id: number;
 }
 /**
  * Attributes allowed during creation
  */
-interface CompanyCreationAttributes extends Optional<CompanyAttributes, 'id' | 'registration_number' | 'pan_number' | 'gst_number' | 'incorporation_date' | 'district_data_id' | 'state_id' | 'is_claimed_itc'> {
+interface CompanyCreationAttributes extends Optional<CompanyAttributes, 'id' | 'registration_number' | 'pan_number' | 'gst_number' | 'incorporation_date' | 'district_data_id' | 'state_id' | 'is_claimed_itc' | 'digital_pin'> {
 }
 /**
  * Company Model
@@ -52,6 +53,7 @@ declare class CompanyRegistration extends Model<CompanyAttributes, CompanyCreati
     contact_email: string;
     contact_phone: string;
     is_claimed_itc?: boolean;
+    digital_pin?: string;
     user_id: number;
     readonly createdAt: Date;
     readonly updatedAt: Date;

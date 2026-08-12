@@ -84,6 +84,10 @@ CompanyRegistration.init({
         allowNull: true,
         defaultValue: false,
     },
+    digital_pin: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true,
+    },
     user_id: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,

@@ -31,6 +31,7 @@ interface CompanyAttributes {
   contact_email: string;
   contact_phone: string;
   is_claimed_itc?: boolean;
+  digital_pin?: string;
   user_id: number;
 }
 
@@ -47,6 +48,7 @@ interface CompanyCreationAttributes extends Optional<
   | 'district_data_id'
   | 'state_id'
   | 'is_claimed_itc'
+  | 'digital_pin'
 > {}
 
 /**
@@ -69,6 +71,7 @@ class CompanyRegistration
   public contact_email!: string;
   public contact_phone!: string;
   public is_claimed_itc?: boolean;
+  public digital_pin?: string;
   public user_id!: number;
 
   public readonly createdAt!: Date;
@@ -135,6 +138,10 @@ CompanyRegistration.init(
       type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: false,
+    },
+    digital_pin: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     user_id: {
       type: DataTypes.INTEGER,

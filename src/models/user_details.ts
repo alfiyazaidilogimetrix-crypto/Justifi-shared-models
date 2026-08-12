@@ -13,6 +13,7 @@ interface UserDetailsAttributes {
   state?: string;
   landmark?: string;
   alternate_mobile_no?: string;
+  digital_pin?: string;
   user_id: number;
 }
 
@@ -29,6 +30,7 @@ interface UserDetailsCreationAttributes extends Optional<
   | 'state'
   | 'landmark'
   | 'alternate_mobile_no'
+  | 'digital_pin'
 > {}
 
 /**
@@ -46,6 +48,7 @@ class UserDetails
   public state?: string;
   public landmark?: string;
   public alternate_mobile_no?: string;
+  public digital_pin?: string;
   public user_id!: number;
 
   public readonly createdAt!: Date;
@@ -85,6 +88,10 @@ UserDetails.init(
       allowNull: true,
     },
     alternate_mobile_no: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    digital_pin: {
       type: DataTypes.STRING,
       allowNull: true,
     },

@@ -44,6 +44,7 @@ interface LawyerAttributes {
     address_line2?: string;
     landmark?: string;
     alternate_mobile_no?: string;
+    digital_pin?: string;
     user_id: number;
     Qualification?: string;
     experience?: string;
@@ -51,7 +52,7 @@ interface LawyerAttributes {
 /**
  * Attributes allowed during creation
  */
-interface LawyerCreationAttributes extends Optional<LawyerAttributes, 'id' | 'lawyer_name' | 'licence_no' | 'ratings' | 'cases_win' | 'contact_no' | 'judiciary_courts' | 'age' | 'email_id' | 'bar_council_reg_no' | 'bar_council_certificate' | 'state_council_reg_no' | 'state_council_certificate' | 'certificate_for_practice' | 'areas_of_expertise' | 'legal_undertaking' | 'pan_number' | 'aadhar_number' | 'bank_account_number' | 'ifsc_code' | 'upi_id' | 'documents_uploaded' | 'pan_verified' | 'aadhar_verified' | 'is_verified' | 'district_data_id' | 'state_id' | 'languages_known' | 'court_type' | 'international_litigation_experience' | 'plan' | 'mobile_no' | 'dob' | 'address' | 'pincode' | 'city' | 'state' | 'address_line1' | 'address_line2' | 'landmark' | 'alternate_mobile_no' | 'Qualification' | 'experience'> {
+interface LawyerCreationAttributes extends Optional<LawyerAttributes, 'id' | 'lawyer_name' | 'licence_no' | 'ratings' | 'cases_win' | 'contact_no' | 'judiciary_courts' | 'age' | 'email_id' | 'bar_council_reg_no' | 'bar_council_certificate' | 'state_council_reg_no' | 'state_council_certificate' | 'certificate_for_practice' | 'areas_of_expertise' | 'legal_undertaking' | 'pan_number' | 'aadhar_number' | 'bank_account_number' | 'ifsc_code' | 'upi_id' | 'documents_uploaded' | 'pan_verified' | 'aadhar_verified' | 'is_verified' | 'district_data_id' | 'state_id' | 'languages_known' | 'court_type' | 'international_litigation_experience' | 'plan' | 'mobile_no' | 'dob' | 'address' | 'pincode' | 'city' | 'state' | 'address_line1' | 'address_line2' | 'landmark' | 'alternate_mobile_no' | 'digital_pin' | 'Qualification' | 'experience'> {
 }
 /**
  * Lawyer Model
@@ -98,6 +99,7 @@ declare class Lawyer extends Model<LawyerAttributes, LawyerCreationAttributes> i
     address_line2?: string;
     landmark?: string;
     alternate_mobile_no?: string;
+    digital_pin?: string;
     user_id: number;
     Qualification?: string;
     experience?: string;

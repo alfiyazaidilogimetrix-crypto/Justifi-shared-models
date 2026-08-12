@@ -66,6 +66,7 @@ Lawyer.init({
     address_line2: { type: sequelize_1.DataTypes.TEXT, allowNull: true },
     landmark: { type: sequelize_1.DataTypes.TEXT, allowNull: true },
     alternate_mobile_no: { type: sequelize_1.DataTypes.STRING, allowNull: true },
+    digital_pin: { type: sequelize_1.DataTypes.STRING, allowNull: true },
     user_id: { type: sequelize_1.DataTypes.INTEGER, allowNull: false },
     Qualification: { type: sequelize_1.DataTypes.STRING, allowNull: true },
     experience: { type: sequelize_1.DataTypes.STRING, allowNull: true },

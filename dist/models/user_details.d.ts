@@ -11,12 +11,13 @@ interface UserDetailsAttributes {
     state?: string;
     landmark?: string;
     alternate_mobile_no?: string;
+    digital_pin?: string;
     user_id: number;
 }
 /**
  * Attributes allowed during creation
  */
-interface UserDetailsCreationAttributes extends Optional<UserDetailsAttributes, 'id' | 'contact_no' | 'address' | 'pincode' | 'city' | 'state' | 'landmark' | 'alternate_mobile_no'> {
+interface UserDetailsCreationAttributes extends Optional<UserDetailsAttributes, 'id' | 'contact_no' | 'address' | 'pincode' | 'city' | 'state' | 'landmark' | 'alternate_mobile_no' | 'digital_pin'> {
 }
 /**
  * UserDetails Model
@@ -30,6 +31,7 @@ declare class UserDetails extends Model<UserDetailsAttributes, UserDetailsCreati
     state?: string;
     landmark?: string;
     alternate_mobile_no?: string;
+    digital_pin?: string;
     user_id: number;
     readonly createdAt: Date;
     readonly updatedAt: Date;
