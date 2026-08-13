@@ -73,6 +73,8 @@ User.init({
     city: { type: sequelize_1.DataTypes.STRING(255), allowNull: true },
     state: { type: sequelize_1.DataTypes.STRING(255), allowNull: true },
     preferred_language: { type: sequelize_1.DataTypes.STRING(255), allowNull: true },
+    latitude: { type: sequelize_1.DataTypes.DOUBLE, allowNull: true, defaultValue: null },
+    longitude: { type: sequelize_1.DataTypes.DOUBLE, allowNull: true, defaultValue: null },
 }, {
     sequelize: db_1.default,
     tableName: 'users',

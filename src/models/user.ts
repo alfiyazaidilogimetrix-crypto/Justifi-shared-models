@@ -25,6 +25,8 @@ export interface UserAttributes {
   city?: string;
   state?: string;
   preferred_language?: string;
+  latitude?: number | null;
+  longitude?: number | null;
 }
 
 /**
@@ -50,6 +52,8 @@ export interface UserCreationAttributes extends Optional<
   | 'city'
   | 'state'
   | 'preferred_language'
+  | 'latitude'
+  | 'longitude'
 > { }
 
 /**
@@ -78,6 +82,8 @@ class User
   public city?: string;
   public state?: string;
   public preferred_language?: string;
+  public latitude?: number | null;
+  public longitude?: number | null;
 }
 
 User.init(
@@ -144,6 +150,8 @@ User.init(
     city: { type: DataTypes.STRING(255), allowNull: true },
     state: { type: DataTypes.STRING(255), allowNull: true },
     preferred_language: { type: DataTypes.STRING(255), allowNull: true },
+    latitude: { type: DataTypes.DOUBLE, allowNull: true, defaultValue: null },
+    longitude: { type: DataTypes.DOUBLE, allowNull: true, defaultValue: null },
   },
   {
     sequelize,
