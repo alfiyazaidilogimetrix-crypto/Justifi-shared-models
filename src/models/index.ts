@@ -41,6 +41,7 @@ import FollowUpOffer, { FollowUpOfferAttributes, FollowUpOfferCreationAttributes
 import Notification, { NotificationAttributes, NotificationCreationAttributes } from './notification';
 import PriorityConsultation, { PriorityConsultationAttributes, PriorityConsultationCreationAttributes } from './priority_consultation';
 import LawyerAvailability, { LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes } from './available_time';
+import PostalCode, { PostalCodeAttributes, PostalCodeCreationAttributes } from './postal_code';
 
 // ─── PriorityConsultation ↔ User & Lawyer ───────────────────────────────────
 PriorityConsultation.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
@@ -452,4 +453,5 @@ export {
   FollowUpOffer, FollowUpOfferAttributes, FollowUpOfferCreationAttributes,
   Notification, NotificationAttributes, NotificationCreationAttributes,
   LawyerAvailability, LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes,
+  PostalCode, PostalCodeAttributes, PostalCodeCreationAttributes,
 };

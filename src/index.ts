@@ -44,6 +44,7 @@ export {
   Notification, NotificationAttributes, NotificationCreationAttributes,
   PriorityConsultation, PriorityConsultationAttributes, PriorityConsultationCreationAttributes,
   LawyerAvailability, LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes,
+  PostalCode, PostalCodeAttributes, PostalCodeCreationAttributes,
 } from './models';
 
 export { TestConnection } from './config/db';

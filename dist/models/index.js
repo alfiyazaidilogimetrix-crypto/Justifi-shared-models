@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LawyerAvailability = exports.Notification = exports.FollowUpOffer = exports.ConsultationFeedback = exports.Complaint = exports.Payment = exports.PriorityConsultation = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Ticket = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
+exports.PostalCode = exports.LawyerAvailability = exports.Notification = exports.FollowUpOffer = exports.ConsultationFeedback = exports.Complaint = exports.Payment = exports.PriorityConsultation = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Ticket = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
 const db_1 = __importDefault(require("../config/db"));
 exports.sequelize = db_1.default;
 // ─── Model Imports ───────────────────────────────────────────────────────────
@@ -90,6 +90,8 @@ const priority_consultation_1 = __importDefault(require("./priority_consultation
 exports.PriorityConsultation = priority_consultation_1.default;
 const available_time_1 = __importDefault(require("./available_time"));
 exports.LawyerAvailability = available_time_1.default;
+const postal_code_1 = __importDefault(require("./postal_code"));
+exports.PostalCode = postal_code_1.default;
 // ─── PriorityConsultation ↔ User & Lawyer ───────────────────────────────────
 priority_consultation_1.default.belongsTo(user_1.default, { foreignKey: 'user_id', as: 'user' });
 user_1.default.hasMany(priority_consultation_1.default, { foreignKey: 'user_id', as: 'priorityConsultations' });
