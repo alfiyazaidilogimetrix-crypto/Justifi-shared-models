@@ -47,6 +47,11 @@ UserRecord.init({
         allowNull: false,
         defaultValue: false,
     },
+    emergency_plan_used: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+    },
     package_validity: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: true,

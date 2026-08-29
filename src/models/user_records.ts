@@ -10,6 +10,7 @@ export interface UserRecordAttributes {
   status: 'ACTIVE' | 'EXPIRE' | 'PENDING' | 'SUSPENDED';
   is_recharge: boolean;
   is_package: boolean;
+  emergency_plan_used: boolean;
   package_validity?: Date;
   plan_id?: number;
   total_minutes?: number;
@@ -33,6 +34,7 @@ export interface UserRecordCreationAttributes extends Optional<
   | 'status'
   | 'is_recharge'
   | 'is_package'
+  | 'emergency_plan_used'
   | 'package_validity'
   | 'plan_id'
   | 'total_minutes'
@@ -73,6 +75,7 @@ class UserRecord
   public payment_id?: string;
   public payment_status?: 'SUCCESS' | 'FAILED' | 'PENDING';
   public is_trial_buy?: boolean;
+  public emergency_plan_used!: boolean;
   public plan_purchased_count?: number;
   public created_at?: Date;
   public updated_at?: Date;
@@ -115,6 +118,11 @@ UserRecord.init(
       defaultValue: false,
     },
     is_package: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    emergency_plan_used: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
