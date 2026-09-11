@@ -23,7 +23,7 @@ Plan.init({
         allowNull: true,
     },
     plan_type: {
-        type: sequelize_1.DataTypes.ENUM('CALLING', 'EMERGENCY', 'LAWYER_MONTHLY', 'LAWYER_YEARLY', 'LAWYER_TRIAL', 'RYLAW_BOT', 'ENTERPRISE_PLAN'),
+        type: sequelize_1.DataTypes.ENUM('CALLING', 'EMERGENCY', 'LAWYER_MONTHLY', 'LAWYER_YEARLY', 'LAWYER_TRIAL', 'RYLAW_BOT', 'ENTERPRISE_PLAN', 'PARTY_SEARCH'),
         allowNull: true,
     },
     price: {

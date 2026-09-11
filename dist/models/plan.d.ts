@@ -8,7 +8,7 @@ export interface PlanAttributes {
     duration: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime';
     is_active: boolean;
     is_recommended: boolean;
-    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN';
+    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN' | 'PARTY_SEARCH';
     features?: string[];
     createdAt?: Date;
     updatedAt?: Date;
@@ -24,7 +24,7 @@ declare class Plan extends Model<PlanAttributes, PlanCreationAttributes> impleme
     duration: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime';
     is_active: boolean;
     is_recommended: boolean;
-    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN';
+    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN' | 'PARTY_SEARCH';
     features: any;
     readonly createdAt: Date;
     readonly updatedAt: Date;
