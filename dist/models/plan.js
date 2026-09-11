@@ -36,7 +36,7 @@ Plan.init({
         defaultValue: 'INR',
     },
     duration: {
-        type: sequelize_1.DataTypes.ENUM('monthly', 'yearly', 'quaterly', 'daily', 'weekly', 'lifetime'),
+        type: sequelize_1.DataTypes.ENUM('monthly', 'yearly', 'quaterly', 'daily', 'weekly', 'lifetime', 'onetime'),
         allowNull: false,
         defaultValue: 'monthly',
     },

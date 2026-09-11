@@ -8,7 +8,7 @@ export interface PlanAttributes {
     description?: string;
     price: number;
     currency: string;
-    duration: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime';
+    duration: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime'| 'onetime';
     is_active: boolean;
     is_recommended: boolean;
     plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN' | 'PARTY_SEARCH';
@@ -39,7 +39,7 @@ class Plan
     public description!: string;
     public price!: number;
     public currency!: string;
-    public duration!: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime';
+    public duration!: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime'| 'onetime';
     public is_active!: boolean;
     public is_recommended!: boolean;
     public plan_type!: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT'| 'ENTERPRISE_PLAN' | 'PARTY_SEARCH';
@@ -83,7 +83,7 @@ Plan.init(
         },
 
         duration: {
-            type: DataTypes.ENUM('monthly', 'yearly', 'quaterly', 'daily', 'weekly', 'lifetime'),
+            type: DataTypes.ENUM('monthly', 'yearly', 'quaterly', 'daily', 'weekly', 'lifetime','onetime'),
             allowNull: false,
             defaultValue: 'monthly',
         },
