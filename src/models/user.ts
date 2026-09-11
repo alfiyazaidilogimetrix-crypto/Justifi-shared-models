@@ -24,6 +24,7 @@ export interface UserAttributes {
   blocked_at?: Date;
   city?: string;
   state?: string;
+  address_details?:string;
   preferred_language?: string;
   latitude?: number | null;
   longitude?: number | null;
@@ -48,6 +49,7 @@ export interface UserCreationAttributes extends Optional<
   | 'state_id'
   | 'is_blocked'
   | 'block_reason'
+  |'address_details'
   | 'blocked_at'
   | 'city'
   | 'state'
@@ -80,6 +82,7 @@ class User
   public block_reason?: string;
   public blocked_at?: Date;
   public city?: string;
+  public address_details?: string;
   public state?: string;
   public preferred_language?: string;
   public latitude?: number | null;
@@ -136,6 +139,10 @@ User.init(
       allowNull: true,
     },
     googleId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    address_details: {
       type: DataTypes.STRING,
       allowNull: true,
     },

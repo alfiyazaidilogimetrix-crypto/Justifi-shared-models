@@ -62,6 +62,10 @@ User.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: true,
     },
+    address_details: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true,
+    },
     district_data_id: {
         type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.TEXT),
         allowNull: true,
