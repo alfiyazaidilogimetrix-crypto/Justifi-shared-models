@@ -1,19 +1,19 @@
-import { Model, Optional } from 'sequelize';
+import { Model, Optional } from "sequelize";
 export interface PlanAttributes {
     id: number;
     name: string;
     description?: string;
     price: number;
     currency: string;
-    duration: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime' | 'onetime';
+    duration: "monthly" | "yearly" | "quaterly" | "daily" | "weekly" | "lifetime" | "onetime";
     is_active: boolean;
     is_recommended: boolean;
-    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN' | 'PARTY_SEARCH' | 'STRATEGY_AUDIT' | 'LEGAL_NOTICE' | 'PETITION_AFFIDAVIT' | 'CONTRACT_VALIDATION';
+    plan_type: "CALLING" | "EMERGENCY" | "LAWYER_MONTHLY" | "LAWYER_YEARLY" | "LAWYER_TRIAL" | "RYLAW_BOT" | "ENTERPRISE_PLAN" | "PARTY_SEARCH" | "STRATEGY_AUDIT" | "LEGAL_NOTICE" | "PETITION_AFFIDAVIT" | "CONTRACT_VALIDATION";
     features?: string[];
     createdAt?: Date;
     updatedAt?: Date;
 }
-export interface PlanCreationAttributes extends Optional<PlanAttributes, 'id' | 'description' | 'currency' | 'duration' | 'is_active' | 'is_recommended' | 'features' | 'plan_type' | 'createdAt' | 'updatedAt'> {
+export interface PlanCreationAttributes extends Optional<PlanAttributes, "id" | "description" | "currency" | "duration" | "is_active" | "is_recommended" | "features" | "plan_type" | "createdAt" | "updatedAt"> {
 }
 declare class Plan extends Model<PlanAttributes, PlanCreationAttributes> implements PlanAttributes {
     id: number;
@@ -21,10 +21,10 @@ declare class Plan extends Model<PlanAttributes, PlanCreationAttributes> impleme
     description: string;
     price: number;
     currency: string;
-    duration: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime' | 'onetime';
+    duration: "monthly" | "yearly" | "quaterly" | "daily" | "weekly" | "lifetime" | "onetime";
     is_active: boolean;
     is_recommended: boolean;
-    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN' | 'PARTY_SEARCH' | 'STRATEGY_AUDIT' | 'LEGAL_NOTICE' | 'PETITION_AFFIDAVIT' | 'CONTRACT_VALIDATION';
+    plan_type: "CALLING" | "EMERGENCY" | "LAWYER_MONTHLY" | "LAWYER_YEARLY" | "LAWYER_TRIAL" | "RYLAW_BOT" | "ENTERPRISE_PLAN" | "PARTY_SEARCH" | "STRATEGY_AUDIT" | "LEGAL_NOTICE" | "PETITION_AFFIDAVIT" | "CONTRACT_VALIDATION";
     features: any;
     readonly createdAt: Date;
     readonly updatedAt: Date;

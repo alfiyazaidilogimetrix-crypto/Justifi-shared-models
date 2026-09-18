@@ -23,7 +23,7 @@ Plan.init({
         allowNull: true,
     },
     plan_type: {
-        type: sequelize_1.DataTypes.ENUM('CALLING', 'EMERGENCY', 'LAWYER_MONTHLY', 'LAWYER_YEARLY', 'LAWYER_TRIAL', 'RYLAW_BOT', 'ENTERPRISE_PLAN', 'PARTY_SEARCH'),
+        type: sequelize_1.DataTypes.ENUM("CALLING", "EMERGENCY", "LAWYER_MONTHLY", "LAWYER_YEARLY", "LAWYER_TRIAL", "RYLAW_BOT", "ENTERPRISE_PLAN", "PARTY_SEARCH", "STRATEGY_AUDIT", "LEGAL_NOTICE", "PETITION_AFFIDAVIT", "CONTRACT_VALIDATION"),
         allowNull: true,
     },
     price: {
@@ -33,12 +33,12 @@ Plan.init({
     currency: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'INR',
+        defaultValue: "INR",
     },
     duration: {
-        type: sequelize_1.DataTypes.ENUM('monthly', 'yearly', 'quaterly', 'daily', 'weekly', 'lifetime', 'onetime'),
+        type: sequelize_1.DataTypes.ENUM("monthly", "yearly", "quaterly", "daily", "weekly", "lifetime", "onetime"),
         allowNull: false,
-        defaultValue: 'monthly',
+        defaultValue: "monthly",
     },
     is_active: {
         type: sequelize_1.DataTypes.BOOLEAN,
@@ -56,7 +56,7 @@ Plan.init({
     },
 }, {
     sequelize: db_1.default,
-    tableName: 'plans',
+    tableName: "plans",
     timestamps: true,
     underscored: true,
 });
