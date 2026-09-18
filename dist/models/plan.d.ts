@@ -8,7 +8,7 @@ export interface PlanAttributes {
     duration: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime' | 'onetime';
     is_active: boolean;
     is_recommended: boolean;
-    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN' | 'PARTY_SEARCH';
+    plan_type: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT' | 'ENTERPRISE_PLAN' | 'PARTY_SEARCH' | 'STRATEGY_AUDIT' | 'LEGAL_NOTICE' | 'PETITION_AFFIDAVIT' | 'CONTRACT_VALIDATION';
     features?: string[];
     createdAt?: Date;
     updatedAt?: Date;
