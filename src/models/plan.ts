@@ -42,7 +42,7 @@ class Plan
     public duration!: 'monthly' | 'yearly' | 'quaterly' | 'daily' | 'weekly' | 'lifetime'| 'onetime';
     public is_active!: boolean;
     public is_recommended!: boolean;
-    public plan_type!: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT'| 'ENTERPRISE_PLAN' | 'PARTY_SEARCH';
+    public plan_type!: 'CALLING' | 'EMERGENCY' | 'LAWYER_MONTHLY' | 'LAWYER_YEARLY' | 'LAWYER_TRIAL' | 'RYLAW_BOT'| 'ENTERPRISE_PLAN' | 'PARTY_SEARCH' | 'STRATEGY_AUDIT' | 'LEGAL_NOTICE' | 'PETITION_AFFIDAVIT' | 'CONTRACT_VALIDATION';
     public features!: any;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
