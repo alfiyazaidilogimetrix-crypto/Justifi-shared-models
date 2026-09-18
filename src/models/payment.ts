@@ -10,6 +10,7 @@ export interface PaymentAttributes {
     status: 'created' | 'pending' | 'success' | 'failed';
     payment_method?: string;
     payment_properties?: any;
+    is_used?: boolean;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -36,6 +37,7 @@ class Payment
     public status!: 'created' | 'pending' | 'success' | 'failed';
     public payment_method!: string;
     public payment_properties!: any;
+    public is_used!:boolean;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
@@ -84,6 +86,11 @@ Payment.init(
             type: DataTypes.ENUM("Prepaid", "COD", "Wallet"),
             allowNull: true,
             defaultValue: "Prepaid"
+        },
+        is_used:{
+            type:DataTypes.BOOLEAN,
+            allowNull:true,
+            defaultValue:false
         },
         payment_properties: {
             type: DataTypes.JSON,

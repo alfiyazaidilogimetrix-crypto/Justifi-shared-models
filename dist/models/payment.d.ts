@@ -8,6 +8,7 @@ export interface PaymentAttributes {
     status: 'created' | 'pending' | 'success' | 'failed';
     payment_method?: string;
     payment_properties?: any;
+    is_used?: boolean;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -22,6 +23,7 @@ declare class Payment extends Model<PaymentAttributes, PaymentCreationAttributes
     status: 'created' | 'pending' | 'success' | 'failed';
     payment_method: string;
     payment_properties: any;
+    is_used: boolean;
     readonly createdAt: Date;
     readonly updatedAt: Date;
 }
