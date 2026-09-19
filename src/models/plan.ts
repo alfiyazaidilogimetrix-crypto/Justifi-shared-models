@@ -30,7 +30,9 @@ export interface PlanAttributes {
     | "STRATEGY_AUDIT"
     | "LEGAL_NOTICE"
     | "PETITION_AFFIDAVIT"
-    | "CONTRACT_VALIDATION";
+    | "CONTRACT_VALIDATION"
+    | "JUDGE_PERSONA"
+    | "ADR_ROUTING";
   features?: string[];
   createdAt?: Date;
   updatedAt?: Date;
@@ -81,7 +83,9 @@ class Plan
     | "STRATEGY_AUDIT"
     | "LEGAL_NOTICE"
     | "PETITION_AFFIDAVIT"
-    | "CONTRACT_VALIDATION";
+    | "CONTRACT_VALIDATION"
+    | "JUDGE_PERSONA"
+    | "ADR_ROUTING";
   public features!: any;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -119,6 +123,8 @@ Plan.init(
         "LEGAL_NOTICE",
         "PETITION_AFFIDAVIT",
         "CONTRACT_VALIDATION",
+        "JUDGE_PERSONA",
+        "ADR_ROUTING"
       ),
       allowNull: true,
     },
