@@ -32,7 +32,10 @@ export interface PlanAttributes {
     | "PETITION_AFFIDAVIT"
     | "CONTRACT_VALIDATION"
     | "JUDGE_PERSONA"
-    | "ADR_ROUTING";
+    | "ADR_ROUTING"
+    | "COMPLIANCE_RADAR"
+    | "CONFLICT_OPTIMIZER"
+    | "QUANTUM_CALCULATOR";
   features?: string[];
   createdAt?: Date;
   updatedAt?: Date;
@@ -85,7 +88,10 @@ class Plan
     | "PETITION_AFFIDAVIT"
     | "CONTRACT_VALIDATION"
     | "JUDGE_PERSONA"
-    | "ADR_ROUTING";
+    | "ADR_ROUTING"
+    | "COMPLIANCE_RADAR"
+    | "CONFLICT_OPTIMIZER"
+    | "QUANTUM_CALCULATOR";
   public features!: any;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -124,7 +130,10 @@ Plan.init(
         "PETITION_AFFIDAVIT",
         "CONTRACT_VALIDATION",
         "JUDGE_PERSONA",
-        "ADR_ROUTING"
+        "ADR_ROUTING",
+        "COMPLIANCE_RADAR",
+        "CONFLICT_OPTIMIZER",
+        "QUANTUM_CALCULATOR"
       ),
       allowNull: true,
     },
