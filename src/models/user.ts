@@ -28,6 +28,7 @@ export interface UserAttributes {
   preferred_language?: string;
   latitude?: number | null;
   longitude?: number | null;
+  session_id?: string | null;
 }
 
 /**
@@ -56,6 +57,7 @@ export interface UserCreationAttributes extends Optional<
   | 'preferred_language'
   | 'latitude'
   | 'longitude'
+  | 'session_id'
 > { }
 
 /**
@@ -87,6 +89,7 @@ class User
   public preferred_language?: string;
   public latitude?: number | null;
   public longitude?: number | null;
+  public session_id?: string | null;
 }
 
 User.init(
@@ -159,6 +162,7 @@ User.init(
     preferred_language: { type: DataTypes.STRING(255), allowNull: true },
     latitude: { type: DataTypes.DOUBLE, allowNull: true, defaultValue: null },
     longitude: { type: DataTypes.DOUBLE, allowNull: true, defaultValue: null },
+    session_id: { type: DataTypes.STRING(255), allowNull: true, defaultValue: null },
   },
   {
     sequelize,
