@@ -6,17 +6,19 @@ export interface RylawChatAttributes {
   user_id: number;
   file_id?: number;
   file_summary?: string;
-  chat_id: string;
+  session_id: string;
+  session_name?: string;
   query: string;
   response: string;
   created_at: Date;
   severity?: string;
   category?: string;
+  premium_plan_unlocked?: string;
 }
 
 export interface RylawChatCreationAttributes extends Optional<
   RylawChatAttributes,
-  'id' | 'severity' | 'category' | 'created_at'
+  'id' | 'severity' | 'category' | 'created_at' | 'premium_plan_unlocked' | 'session_name'
 > {}
 
 class RylawChat
@@ -26,12 +28,14 @@ class RylawChat
   public id!: number;
   public user_id!: number;
   public file_id!: number;
-  public chat_id!: string;
+  public session_id!: string;
+  public session_name?: string;
   public query!: string;
   public response!: string;
   public created_at!: Date;
   public severity!: string;
   public category!: string;
+  public premium_plan_unlocked!: string;
 }
 
 RylawChat.init(
@@ -46,7 +50,11 @@ RylawChat.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    chat_id: {
+    session_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    session_name: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -77,6 +85,10 @@ RylawChat.init(
     },
     file_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    premium_plan_unlocked: {
+      type: DataTypes.STRING,
       allowNull: true,
     },
   },

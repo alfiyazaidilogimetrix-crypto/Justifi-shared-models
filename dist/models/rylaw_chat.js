@@ -18,7 +18,11 @@ RylawChat.init({
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    chat_id: {
+    session_id: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true,
+    },
+    session_name: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: true,
     },
@@ -49,6 +53,10 @@ RylawChat.init({
     },
     file_id: {
         type: sequelize_1.DataTypes.INTEGER,
+        allowNull: true,
+    },
+    premium_plan_unlocked: {
+        type: sequelize_1.DataTypes.STRING,
         allowNull: true,
     },
 }, {
