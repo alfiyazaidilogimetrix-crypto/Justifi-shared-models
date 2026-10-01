@@ -1,4 +1,4 @@
-name: Deploy Shared Models to UAT
+name: Deploy Shared Models to UAT ENV
 
 on:
   push:
