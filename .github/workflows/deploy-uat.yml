@@ -1,3 +1,4 @@
+```yaml
 name: Deploy Shared Models to UAT
 
 on:
@@ -10,28 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check SSH secret
+      - name: Check SSH secrets
         run: |
           if [ -z "${{ secrets.EC2_SSH_KEY }}" ]; then
             echo "EC2_SSH_KEY is EMPTY or NOT AVAILABLE"
             exit 1
-          else
-            echo "EC2_SSH_KEY is available"
           fi
 
           if [ -z "${{ secrets.EC2_HOST }}" ]; then
             echo "EC2_HOST is EMPTY or NOT AVAILABLE"
             exit 1
-          else
-            echo "EC2_HOST is available"
           fi
 
           if [ -z "${{ secrets.EC2_USER }}" ]; then
             echo "EC2_USER is EMPTY or NOT AVAILABLE"
             exit 1
-          else
-            echo "EC2_USER is available"
           fi
+
+          echo "All SSH secrets are available"
 
       - name: Deploy to UAT
         uses: appleboy/ssh-action@v1.2.0
@@ -44,32 +41,27 @@ jobs:
 
             SHARED_MODELS_COMMIT="${{ github.sha }}"
 
-            echo "Deploying shared-models commit: $SHARED_MODELS_COMMIT"
+            echo "Deploying commit: $SHARED_MODELS_COMMIT"
 
-            SERVICES="
-            justifi-auth-onboarding
-            justifi-backend
-            justifi-cases-management
-            justifi-calling-service
-            justifi-chat-service
-            justifi-dms-service
-            "
+            cd /opt/justifi/justifi-auth-onboarding
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
-            for SERVICE in $SERVICES; do
-              echo "========================================"
-              echo "Updating $SERVICE"
-              echo "========================================"
+            cd /opt/justifi/justifi-backend
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
-              cd "/opt/justifi/$SERVICE"
+            cd /opt/justifi/justifi-cases-management
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
-              npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
-            done
+            cd /opt/justifi/justifi-calling-service
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
+
+            cd /opt/justifi/justifi-chat-service
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
+
+            cd /opt/justifi/justifi-dms-service
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
             cd /opt/justifi
-
-            echo "========================================"
-            echo "Building UAT containers"
-            echo "========================================"
 
             docker compose build \
               justifi-auth-onboarding \
@@ -79,10 +71,6 @@ jobs:
               justifi-chat-service \
               justifi-dms-service
 
-            echo "========================================"
-            echo "Restarting UAT containers"
-            echo "========================================"
-
             docker compose up -d \
               justifi-auth-onboarding \
               justifi-backend \
@@ -91,8 +79,5 @@ jobs:
               justifi-chat-service \
               justifi-dms-service
 
-            echo "========================================"
-            echo "UAT deployment completed"
-            echo "Shared Models Commit: $SHARED_MODELS_COMMIT"
-            echo "========================================"
+            echo "UAT deployment completed successfully"
 ```
