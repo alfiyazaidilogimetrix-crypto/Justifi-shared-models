@@ -12,7 +12,7 @@ export interface PaymentAttributes {
     createdAt?: Date;
     updatedAt?: Date;
 }
-export interface PaymentCreationAttributes extends Optional<PaymentAttributes, 'id' | 'currency' | 'status' | 'payment_method' | 'payment_properties' | 'createdAt' | 'updatedAt'> {
+export interface PaymentCreationAttributes extends Optional<PaymentAttributes, 'id' | 'currency' | 'status' | 'payment_method' | 'payment_properties' | 'is_used' | 'createdAt' | 'updatedAt'> {
 }
 declare class Payment extends Model<PaymentAttributes, PaymentCreationAttributes> implements PaymentAttributes {
     id: number;

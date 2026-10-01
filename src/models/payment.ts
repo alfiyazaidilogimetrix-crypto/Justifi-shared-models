@@ -22,6 +22,7 @@ export interface PaymentCreationAttributes extends Optional<
     | 'status'
     | 'payment_method'
     | 'payment_properties'
+    |  'is_used'
     | 'createdAt'
     | 'updatedAt'
 > { }
