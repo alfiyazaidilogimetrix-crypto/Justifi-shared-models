@@ -29,38 +29,66 @@ jobs:
 
           echo "All SSH secrets are available"
 
-      - name: Deploy to UAT
+      - name: Deploy Shared Models to UAT
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          command_timeout: 45m
+
           script: |
             set -e
 
             SHARED_MODELS_COMMIT="${{ github.sha }}"
 
-            echo "Deploying commit: $SHARED_MODELS_COMMIT"
+            echo "=========================================="
+            echo "       SHARED MODELS UAT DEPLOYMENT"
+            echo "=========================================="
+            echo "Commit: $SHARED_MODELS_COMMIT"
+            echo "Started: $(date)"
+            echo "=========================================="
 
+            echo ""
+            echo ">>> Updating shared-models in AUTH..."
             cd /opt/justifi/justifi-auth-onboarding
             npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
+            echo ""
+            echo ">>> Updating shared-models in BACKEND..."
             cd /opt/justifi/justifi-backend
             npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
+            echo ""
+            echo ">>> Updating shared-models in CASES..."
             cd /opt/justifi/justifi-cases-management
             npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
+            echo ""
+            echo ">>> Updating shared-models in CALLING..."
             cd /opt/justifi/justifi-calling-service
             npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
+            echo ""
+            echo ">>> Updating shared-models in CHAT..."
             cd /opt/justifi/justifi-chat-service
             npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
+            echo ""
+            echo ">>> Updating shared-models in DMS..."
             cd /opt/justifi/justifi-dms-service
             npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
 
+            echo ""
+            echo "=========================================="
+            echo " All shared-models dependencies updated"
+            echo "=========================================="
+
             cd /opt/justifi
+
+            echo ""
+            echo ">>> Building UAT Docker containers..."
+            echo "Started: $(date)"
 
             docker compose build \
               justifi-auth-onboarding \
@@ -70,6 +98,15 @@ jobs:
               justifi-chat-service \
               justifi-dms-service
 
+            echo ""
+            echo ">>> Docker build completed"
+            echo "Completed: $(date)"
+
+            echo ""
+            echo "=========================================="
+            echo "       STARTING UPDATED CONTAINERS"
+            echo "=========================================="
+
             docker compose up -d \
               justifi-auth-onboarding \
               justifi-backend \
@@ -78,4 +115,21 @@ jobs:
               justifi-chat-service \
               justifi-dms-service
 
-            echo "UAT deployment completed successfully"
+            echo ""
+            echo ">>> Checking container status..."
+
+            docker compose ps \
+              justifi-auth-onboarding \
+              justifi-backend \
+              justifi-cases-management \
+              justifi-calling-service \
+              justifi-chat-service \
+              justifi-dms-service
+
+            echo ""
+            echo "=========================================="
+            echo "       UAT DEPLOYMENT COMPLETED"
+            echo "=========================================="
+            echo "Shared Models Commit: $SHARED_MODELS_COMMIT"
+            echo "Completed: $(date)"
+            echo "=========================================="
