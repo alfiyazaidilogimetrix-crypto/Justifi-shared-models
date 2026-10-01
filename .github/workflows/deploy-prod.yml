@@ -1,0 +1,135 @@
+name: Deploy Shared Models to PROD
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check SSH secrets
+        run: |
+          if [ -z "${{ secrets.EC2_SSH_KEY }}" ]; then
+            echo "EC2_SSH_KEY is EMPTY or NOT AVAILABLE"
+            exit 1
+          fi
+
+          if [ -z "${{ secrets.EC2_HOST }}" ]; then
+            echo "EC2_HOST is EMPTY or NOT AVAILABLE"
+            exit 1
+          fi
+
+          if [ -z "${{ secrets.EC2_USER }}" ]; then
+            echo "EC2_USER is EMPTY or NOT AVAILABLE"
+            exit 1
+          fi
+
+          echo "All SSH secrets are available"
+
+      - name: Deploy Shared Models to PROD
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          command_timeout: 45m
+
+          script: |
+            set -e
+
+            SHARED_MODELS_COMMIT="${{ github.sha }}"
+
+            echo "=========================================="
+            echo "      SHARED MODELS PROD DEPLOYMENT"
+            echo "=========================================="
+            echo "Commit: $SHARED_MODELS_COMMIT"
+            echo "Started: $(date)"
+            echo "=========================================="
+
+            echo ""
+            echo ">>> Updating shared-models in AUTH..."
+            cd /opt/justifi-prod/justifi-auth-onboarding
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
+
+            echo ""
+            echo ">>> Updating shared-models in BACKEND..."
+            cd /opt/justifi-prod/justifi-backend
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
+
+            echo ""
+            echo ">>> Updating shared-models in CASES..."
+            cd /opt/justifi-prod/justifi-cases-management
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
+
+            echo ""
+            echo ">>> Updating shared-models in CALLING..."
+            cd /opt/justifi-prod/justifi-calling-service
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
+
+            echo ""
+            echo ">>> Updating shared-models in CHAT..."
+            cd /opt/justifi-prod/justifi-chat-service
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
+
+            echo ""
+            echo ">>> Updating shared-models in DMS..."
+            cd /opt/justifi-prod/justifi-dms-service
+            npm install "github:alfiyazaidilogimetrix-crypto/Justifi-shared-models#$SHARED_MODELS_COMMIT"
+
+            echo ""
+            echo "=========================================="
+            echo " All shared-models dependencies updated"
+            echo "=========================================="
+
+            cd /opt/justifi-prod
+
+            echo ""
+            echo ">>> Building PROD Docker containers..."
+            echo "Started: $(date)"
+
+            docker compose build \
+              justifi-auth-onboarding-prod \
+              justifi-backend-prod \
+              justifi-cases-management-prod \
+              justifi-calling-service-prod \
+              justifi-chat-service-prod \
+              justifi-dms-service-prod
+
+            echo ""
+            echo ">>> Docker build completed"
+            echo "Completed: $(date)"
+
+            echo ""
+            echo "=========================================="
+            echo "       STARTING UPDATED CONTAINERS"
+            echo "=========================================="
+
+            docker compose up -d \
+              justifi-auth-onboarding-prod \
+              justifi-backend-prod \
+              justifi-cases-management-prod \
+              justifi-calling-service-prod \
+              justifi-chat-service-prod \
+              justifi-dms-service-prod
+
+            echo ""
+            echo ">>> Checking PROD container status..."
+
+            docker compose ps \
+              justifi-auth-onboarding-prod \
+              justifi-backend-prod \
+              justifi-cases-management-prod \
+              justifi-calling-service-prod \
+              justifi-chat-service-prod \
+              justifi-dms-service-prod
+
+            echo ""
+            echo "=========================================="
+            echo "      PROD DEPLOYMENT COMPLETED"
+            echo "=========================================="
+            echo "Shared Models Commit: $SHARED_MODELS_COMMIT"
+            echo "Completed: $(date)"
+            echo "=========================================="
