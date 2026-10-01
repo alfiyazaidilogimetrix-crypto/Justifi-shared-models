@@ -47,7 +47,6 @@ Payment.init({
     },
     is_used: {
         type: sequelize_1.DataTypes.BOOLEAN,
-        allowNull: true,
         defaultValue: false
     },
     payment_properties: {

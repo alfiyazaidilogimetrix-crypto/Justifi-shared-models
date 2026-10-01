@@ -89,7 +89,6 @@ Payment.init(
         },
         is_used:{
             type:DataTypes.BOOLEAN,
-            allowNull:true,
             defaultValue:false
         },
         payment_properties: {
