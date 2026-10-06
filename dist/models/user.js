@@ -80,6 +80,10 @@ User.init({
     latitude: { type: sequelize_1.DataTypes.DOUBLE, allowNull: true, defaultValue: null },
     longitude: { type: sequelize_1.DataTypes.DOUBLE, allowNull: true, defaultValue: null },
     session_id: { type: sequelize_1.DataTypes.STRING(255), allowNull: true, defaultValue: null },
+    // Email verification fields
+    is_email_verified: { type: sequelize_1.DataTypes.BOOLEAN, allowNull: true, defaultValue: false },
+    email_verification_token: { type: sequelize_1.DataTypes.STRING(255), allowNull: true, defaultValue: null },
+    email_verification_token_expiry: { type: sequelize_1.DataTypes.DATE, allowNull: true, defaultValue: null },
 }, {
     sequelize: db_1.default,
     tableName: 'users',
