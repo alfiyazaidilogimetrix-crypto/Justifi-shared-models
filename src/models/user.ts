@@ -29,6 +29,10 @@ export interface UserAttributes {
   latitude?: number | null;
   longitude?: number | null;
   session_id?: string | null;
+  // Email verification fields
+  is_email_verified?: boolean;
+  email_verification_token?: string | null;
+  email_verification_token_expiry?: Date | null;
 }
 
 /**
@@ -58,6 +62,9 @@ export interface UserCreationAttributes extends Optional<
   | 'latitude'
   | 'longitude'
   | 'session_id'
+  | 'is_email_verified'
+  | 'email_verification_token'
+  | 'email_verification_token_expiry'
 > { }
 
 /**
@@ -90,6 +97,10 @@ class User
   public latitude?: number | null;
   public longitude?: number | null;
   public session_id?: string | null;
+  // Email verification fields
+  public is_email_verified?: boolean;
+  public email_verification_token?: string | null;
+  public email_verification_token_expiry?: Date | null;
 }
 
 User.init(
@@ -163,6 +174,10 @@ User.init(
     latitude: { type: DataTypes.DOUBLE, allowNull: true, defaultValue: null },
     longitude: { type: DataTypes.DOUBLE, allowNull: true, defaultValue: null },
     session_id: { type: DataTypes.STRING(255), allowNull: true, defaultValue: null },
+    // Email verification fields
+    is_email_verified: { type: DataTypes.BOOLEAN, allowNull: true, defaultValue: false },
+    email_verification_token: { type: DataTypes.STRING(255), allowNull: true, defaultValue: null },
+    email_verification_token_expiry: { type: DataTypes.DATE, allowNull: true, defaultValue: null },
   },
   {
     sequelize,

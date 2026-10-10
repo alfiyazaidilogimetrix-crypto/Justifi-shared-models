@@ -27,11 +27,14 @@ export interface UserAttributes {
     latitude?: number | null;
     longitude?: number | null;
     session_id?: string | null;
+    is_email_verified?: boolean;
+    email_verification_token?: string | null;
+    email_verification_token_expiry?: Date | null;
 }
 /**
  * Attributes allowed during creation
  */
-export interface UserCreationAttributes extends Optional<UserAttributes, 'user_id' | 'encrypted_password' | 'master_password' | 'user_type' | 'plan_id' | 'parent_user_id' | 'firm_id' | 'subscription_status' | 'subscription_date' | 'googleId' | 'district_data_id' | 'state_id' | 'is_blocked' | 'block_reason' | 'address_details' | 'blocked_at' | 'city' | 'state' | 'preferred_language' | 'latitude' | 'longitude' | 'session_id'> {
+export interface UserCreationAttributes extends Optional<UserAttributes, 'user_id' | 'encrypted_password' | 'master_password' | 'user_type' | 'plan_id' | 'parent_user_id' | 'firm_id' | 'subscription_status' | 'subscription_date' | 'googleId' | 'district_data_id' | 'state_id' | 'is_blocked' | 'block_reason' | 'address_details' | 'blocked_at' | 'city' | 'state' | 'preferred_language' | 'latitude' | 'longitude' | 'session_id' | 'is_email_verified' | 'email_verification_token' | 'email_verification_token_expiry'> {
 }
 /**
  * User Model
@@ -61,6 +64,9 @@ declare class User extends Model<UserAttributes, UserCreationAttributes> impleme
     latitude?: number | null;
     longitude?: number | null;
     session_id?: string | null;
+    is_email_verified?: boolean;
+    email_verification_token?: string | null;
+    email_verification_token_expiry?: Date | null;
 }
 export default User;
 //# sourceMappingURL=user.d.ts.map
