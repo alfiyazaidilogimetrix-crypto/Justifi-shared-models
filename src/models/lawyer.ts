@@ -6,6 +6,7 @@ import sequelize from '../config/db';
  */
 interface LawyerAttributes {
   id: number;
+  designation?:string;
   lawyer_name?: string;
   licence_no?: string;
   ratings?: number;
@@ -58,6 +59,7 @@ interface LawyerAttributes {
 interface LawyerCreationAttributes extends Optional<
   LawyerAttributes,
   | 'id'
+  | 'designation'
   | 'lawyer_name'
   | 'licence_no'
   | 'ratings'
@@ -111,6 +113,7 @@ class Lawyer
   implements LawyerAttributes
 {
   public id!: number;
+  public designation?: string;
   public lawyer_name?: string;
   public licence_no?: string;
   public ratings?: number;
@@ -168,6 +171,7 @@ Lawyer.init(
       autoIncrement: true,
       allowNull: false,
     },
+    designation: { type: DataTypes.STRING, allowNull: true },
     lawyer_name: { type: DataTypes.STRING, allowNull: true },
     licence_no: { type: DataTypes.STRING, allowNull: true },
     ratings: { type: DataTypes.DECIMAL, allowNull: true },

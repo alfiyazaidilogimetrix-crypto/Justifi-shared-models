@@ -17,6 +17,7 @@ Lawyer.init({
         autoIncrement: true,
         allowNull: false,
     },
+    designation: { type: sequelize_1.DataTypes.STRING, allowNull: true },
     lawyer_name: { type: sequelize_1.DataTypes.STRING, allowNull: true },
     licence_no: { type: sequelize_1.DataTypes.STRING, allowNull: true },
     ratings: { type: sequelize_1.DataTypes.DECIMAL, allowNull: true },
