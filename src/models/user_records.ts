@@ -242,6 +242,13 @@ UserRecord.init(
     tableName: 'user_record',
     timestamps: true,
     underscored: true,
+    indexes: [
+      {
+        unique: true,
+        fields: ['user_id', 'plan_type'],
+        name: 'user_record_user_id_plan_type_unique',
+      },
+    ],
   }
 );
 
