@@ -16,7 +16,6 @@ UserRecord.init({
     user_id: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
         references: {
             model: 'users',
             key: 'user_id',
@@ -24,12 +23,22 @@ UserRecord.init({
     },
     first_name: {
         type: sequelize_1.DataTypes.STRING,
+        allowNull: true,
     },
     last_name: {
         type: sequelize_1.DataTypes.STRING,
+        allowNull: true,
     },
     time: {
         type: sequelize_1.DataTypes.STRING(255),
+        allowNull: true,
+    },
+    plan_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: true,
+    },
+    plan_type: {
+        type: sequelize_1.DataTypes.STRING(100),
         allowNull: true,
     },
     status: {
@@ -56,20 +65,18 @@ UserRecord.init({
         type: sequelize_1.DataTypes.DATE,
         allowNull: true,
     },
-    plan_id: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: true,
-    },
     total_minutes: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: true,
     },
     bonus_minutes: {
         type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
         defaultValue: 0,
     },
     used_minutes: {
         type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
         defaultValue: 0,
     },
     remaining_minutes: {
@@ -86,6 +93,7 @@ UserRecord.init({
     },
     duration_type: {
         type: sequelize_1.DataTypes.ENUM('MINUTES', 'MONTHLY', 'YEARLY'),
+        allowNull: true,
     },
     payment_id: {
         type: sequelize_1.DataTypes.STRING,
@@ -93,21 +101,31 @@ UserRecord.init({
     },
     payment_status: {
         type: sequelize_1.DataTypes.ENUM('SUCCESS', 'FAILED', 'PENDING'),
+        allowNull: true,
         defaultValue: 'PENDING',
     },
     is_trial_buy: {
         type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false,
         defaultValue: false,
     },
     plan_purchased_count: {
         type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
         defaultValue: 0,
-    }
+    },
 }, {
     sequelize: db_1.default,
     tableName: 'user_record',
     timestamps: true,
     underscored: true,
+    indexes: [
+        {
+            unique: true,
+            fields: ['user_id', 'plan_type'],
+            name: 'user_record_user_id_plan_type_unique',
+        },
+    ],
 });
 exports.default = UserRecord;
 //# sourceMappingURL=user_records.js.map
