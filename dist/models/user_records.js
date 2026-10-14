@@ -71,12 +71,12 @@ UserRecord.init({
     },
     bonus_minutes: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         defaultValue: 0,
     },
     used_minutes: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         defaultValue: 0,
     },
     remaining_minutes: {
@@ -111,7 +111,7 @@ UserRecord.init({
     },
     plan_purchased_count: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         defaultValue: 0,
     },
 }, {

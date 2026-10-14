@@ -184,13 +184,13 @@ UserRecord.init(
 
     bonus_minutes: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: 0,
     },
 
     used_minutes: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: 0,
     },
 
@@ -233,7 +233,7 @@ UserRecord.init(
 
     plan_purchased_count: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: 0,
     },
   },
