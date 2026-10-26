@@ -20,7 +20,6 @@ UserRecord.init({
             model: 'users',
             key: 'user_id',
         },
-        // IMPORTANT: unique: true removed
     },
     first_name: {
         type: sequelize_1.DataTypes.STRING,

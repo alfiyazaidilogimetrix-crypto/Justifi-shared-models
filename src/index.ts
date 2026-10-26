@@ -45,6 +45,9 @@ export {
   PriorityConsultation, PriorityConsultationAttributes, PriorityConsultationCreationAttributes,
   LawyerAvailability, LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes,
   PostalCode, PostalCodeAttributes, PostalCodeCreationAttributes,
+  CampaignLawyer, CampaignLawyerAttributes, CampaignLawyerCreationAttributes,
+  EmailSuppression, EmailSuppressionAttributes, EmailSuppressionCreationAttributes,
+  CampaignSendLog, CampaignSendLogAttributes, CampaignSendLogCreationAttributes,
 } from './models';
 
 export { TestConnection } from './config/db';

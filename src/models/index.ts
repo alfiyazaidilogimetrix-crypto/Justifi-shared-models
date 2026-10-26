@@ -42,6 +42,13 @@ import Notification, { NotificationAttributes, NotificationCreationAttributes } 
 import PriorityConsultation, { PriorityConsultationAttributes, PriorityConsultationCreationAttributes } from './priority_consultation';
 import LawyerAvailability, { LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes } from './available_time';
 import PostalCode, { PostalCodeAttributes, PostalCodeCreationAttributes } from './postal_code';
+import CampaignLawyer, { CampaignLawyerAttributes, CampaignLawyerCreationAttributes } from './campaign_lawyer';
+import EmailSuppression, { EmailSuppressionAttributes, EmailSuppressionCreationAttributes } from './email_suppression';
+import CampaignSendLog, { CampaignSendLogAttributes, CampaignSendLogCreationAttributes } from './campaign_send_log';
+
+// ─── CampaignLawyer ↔ CampaignSendLog ───────────────────────────────────────
+CampaignLawyer.hasMany(CampaignSendLog, { foreignKey: 'lawyer_id', as: 'sendLogs' });
+CampaignSendLog.belongsTo(CampaignLawyer, { foreignKey: 'lawyer_id', as: 'campaignLawyer' });
 
 // ─── PriorityConsultation ↔ User & Lawyer ───────────────────────────────────
 PriorityConsultation.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
@@ -454,4 +461,7 @@ export {
   Notification, NotificationAttributes, NotificationCreationAttributes,
   LawyerAvailability, LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes,
   PostalCode, PostalCodeAttributes, PostalCodeCreationAttributes,
+  CampaignLawyer, CampaignLawyerAttributes, CampaignLawyerCreationAttributes,
+  EmailSuppression, EmailSuppressionAttributes, EmailSuppressionCreationAttributes,
+  CampaignSendLog, CampaignSendLogAttributes, CampaignSendLogCreationAttributes,
 };
