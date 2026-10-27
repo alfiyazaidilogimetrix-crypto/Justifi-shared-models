@@ -45,6 +45,7 @@ export {
   PriorityConsultation, PriorityConsultationAttributes, PriorityConsultationCreationAttributes,
   LawyerAvailability, LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes,
   PostalCode, PostalCodeAttributes, PostalCodeCreationAttributes,
+  Campaign, CampaignAttributes, CampaignCreationAttributes,
   CampaignLawyer, CampaignLawyerAttributes, CampaignLawyerCreationAttributes,
   EmailSuppression, EmailSuppressionAttributes, EmailSuppressionCreationAttributes,
   CampaignSendLog, CampaignSendLogAttributes, CampaignSendLogCreationAttributes,

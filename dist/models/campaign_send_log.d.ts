@@ -1,6 +1,7 @@
 import { Model, Optional } from 'sequelize';
 export interface CampaignSendLogAttributes {
     id: number;
+    campaign_id?: number | null;
     lawyer_id?: number | null;
     email: string;
     status: 'SENT' | 'FAILED';
@@ -10,10 +11,11 @@ export interface CampaignSendLogAttributes {
     created_at?: Date;
     updated_at?: Date;
 }
-export interface CampaignSendLogCreationAttributes extends Optional<CampaignSendLogAttributes, 'id' | 'lawyer_id' | 'message_id' | 'error_message' | 'sent_at' | 'created_at' | 'updated_at'> {
+export interface CampaignSendLogCreationAttributes extends Optional<CampaignSendLogAttributes, 'id' | 'campaign_id' | 'lawyer_id' | 'message_id' | 'error_message' | 'sent_at' | 'created_at' | 'updated_at'> {
 }
 declare class CampaignSendLog extends Model<CampaignSendLogAttributes, CampaignSendLogCreationAttributes> implements CampaignSendLogAttributes {
     id: number;
+    campaign_id?: number | null;
     lawyer_id?: number | null;
     email: string;
     status: 'SENT' | 'FAILED';

@@ -14,6 +14,16 @@ CampaignSendLog.init({
         autoIncrement: true,
         allowNull: false,
     },
+    campaign_id: {
+        type: sequelize_1.DataTypes.BIGINT,
+        allowNull: true,
+        references: {
+            model: 'campaigns',
+            key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
+    },
     lawyer_id: {
         type: sequelize_1.DataTypes.BIGINT,
         allowNull: true,
@@ -52,6 +62,9 @@ CampaignSendLog.init({
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     indexes: [
+        {
+            fields: ['campaign_id'],
+        },
         {
             fields: ['email'],
         },

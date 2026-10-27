@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CampaignSendLog = exports.EmailSuppression = exports.CampaignLawyer = exports.PostalCode = exports.LawyerAvailability = exports.Notification = exports.FollowUpOffer = exports.ConsultationFeedback = exports.Complaint = exports.Payment = exports.PriorityConsultation = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Ticket = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
+exports.CampaignSendLog = exports.EmailSuppression = exports.CampaignLawyer = exports.Campaign = exports.PostalCode = exports.LawyerAvailability = exports.Notification = exports.FollowUpOffer = exports.ConsultationFeedback = exports.Complaint = exports.Payment = exports.PriorityConsultation = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Ticket = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
 const db_1 = __importDefault(require("../config/db"));
 exports.sequelize = db_1.default;
 // ─── Model Imports ───────────────────────────────────────────────────────────
@@ -92,12 +92,19 @@ const available_time_1 = __importDefault(require("./available_time"));
 exports.LawyerAvailability = available_time_1.default;
 const postal_code_1 = __importDefault(require("./postal_code"));
 exports.PostalCode = postal_code_1.default;
+const campaign_1 = __importDefault(require("./campaign"));
+exports.Campaign = campaign_1.default;
 const campaign_lawyer_1 = __importDefault(require("./campaign_lawyer"));
 exports.CampaignLawyer = campaign_lawyer_1.default;
 const email_suppression_1 = __importDefault(require("./email_suppression"));
 exports.EmailSuppression = email_suppression_1.default;
 const campaign_send_log_1 = __importDefault(require("./campaign_send_log"));
 exports.CampaignSendLog = campaign_send_log_1.default;
+// ─── Campaign Associations ──────────────────────────────────────────────────
+campaign_1.default.hasMany(campaign_lawyer_1.default, { foreignKey: 'campaign_id', as: 'lawyers' });
+campaign_lawyer_1.default.belongsTo(campaign_1.default, { foreignKey: 'campaign_id', as: 'campaign' });
+campaign_1.default.hasMany(campaign_send_log_1.default, { foreignKey: 'campaign_id', as: 'sendLogs' });
+campaign_send_log_1.default.belongsTo(campaign_1.default, { foreignKey: 'campaign_id', as: 'campaign' });
 // ─── CampaignLawyer ↔ CampaignSendLog ───────────────────────────────────────
 campaign_lawyer_1.default.hasMany(campaign_send_log_1.default, { foreignKey: 'lawyer_id', as: 'sendLogs' });
 campaign_send_log_1.default.belongsTo(campaign_lawyer_1.default, { foreignKey: 'lawyer_id', as: 'campaignLawyer' });

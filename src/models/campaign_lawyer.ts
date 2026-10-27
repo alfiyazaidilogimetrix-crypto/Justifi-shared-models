@@ -15,6 +15,7 @@ export interface CampaignLawyerAttributes {
   category?: string;
   bar_council_number?: string;
   status: 'PENDING' | 'SENT' | 'FAILED' | 'UNSUBSCRIBED';
+  campaign_id?: number | null;
   import_batch_id?: string;
   last_sent_at?: Date | null;
   created_at?: Date;
@@ -36,6 +37,7 @@ export interface CampaignLawyerCreationAttributes
     | 'category'
     | 'bar_council_number'
     | 'status'
+    | 'campaign_id'
     | 'import_batch_id'
     | 'last_sent_at'
     | 'created_at'
@@ -59,6 +61,7 @@ class CampaignLawyer
   public category?: string;
   public bar_council_number?: string;
   public status!: 'PENDING' | 'SENT' | 'FAILED' | 'UNSUBSCRIBED';
+  public campaign_id?: number | null;
   public import_batch_id?: string;
   public last_sent_at?: Date | null;
   public readonly created_at!: Date;
@@ -126,6 +129,16 @@ CampaignLawyer.init(
       allowNull: false,
       defaultValue: 'PENDING',
     },
+    campaign_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      references: {
+        model: 'campaigns',
+        key: 'id',
+      },
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
+    },
     import_batch_id: {
       type: DataTypes.STRING(100),
       allowNull: true,
@@ -148,6 +161,9 @@ CampaignLawyer.init(
       },
       {
         fields: ['status'],
+      },
+      {
+        fields: ['campaign_id'],
       },
       {
         fields: ['import_batch_id'],

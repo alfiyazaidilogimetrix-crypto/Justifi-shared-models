@@ -42,9 +42,17 @@ import Notification, { NotificationAttributes, NotificationCreationAttributes } 
 import PriorityConsultation, { PriorityConsultationAttributes, PriorityConsultationCreationAttributes } from './priority_consultation';
 import LawyerAvailability, { LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes } from './available_time';
 import PostalCode, { PostalCodeAttributes, PostalCodeCreationAttributes } from './postal_code';
+import Campaign, { CampaignAttributes, CampaignCreationAttributes } from './campaign';
 import CampaignLawyer, { CampaignLawyerAttributes, CampaignLawyerCreationAttributes } from './campaign_lawyer';
 import EmailSuppression, { EmailSuppressionAttributes, EmailSuppressionCreationAttributes } from './email_suppression';
 import CampaignSendLog, { CampaignSendLogAttributes, CampaignSendLogCreationAttributes } from './campaign_send_log';
+
+// ─── Campaign Associations ──────────────────────────────────────────────────
+Campaign.hasMany(CampaignLawyer, { foreignKey: 'campaign_id', as: 'lawyers' });
+CampaignLawyer.belongsTo(Campaign, { foreignKey: 'campaign_id', as: 'campaign' });
+
+Campaign.hasMany(CampaignSendLog, { foreignKey: 'campaign_id', as: 'sendLogs' });
+CampaignSendLog.belongsTo(Campaign, { foreignKey: 'campaign_id', as: 'campaign' });
 
 // ─── CampaignLawyer ↔ CampaignSendLog ───────────────────────────────────────
 CampaignLawyer.hasMany(CampaignSendLog, { foreignKey: 'lawyer_id', as: 'sendLogs' });
@@ -461,6 +469,7 @@ export {
   Notification, NotificationAttributes, NotificationCreationAttributes,
   LawyerAvailability, LawyerAvailabilityAttributes, LawyerAvailabilityCreationAttributes,
   PostalCode, PostalCodeAttributes, PostalCodeCreationAttributes,
+  Campaign, CampaignAttributes, CampaignCreationAttributes,
   CampaignLawyer, CampaignLawyerAttributes, CampaignLawyerCreationAttributes,
   EmailSuppression, EmailSuppressionAttributes, EmailSuppressionCreationAttributes,
   CampaignSendLog, CampaignSendLogAttributes, CampaignSendLogCreationAttributes,

@@ -3,6 +3,7 @@ import sequelize from '../config/db';
 
 export interface CampaignSendLogAttributes {
   id: number;
+  campaign_id?: number | null;
   lawyer_id?: number | null;
   email: string;
   status: 'SENT' | 'FAILED';
@@ -16,7 +17,7 @@ export interface CampaignSendLogAttributes {
 export interface CampaignSendLogCreationAttributes
   extends Optional<
     CampaignSendLogAttributes,
-    'id' | 'lawyer_id' | 'message_id' | 'error_message' | 'sent_at' | 'created_at' | 'updated_at'
+    'id' | 'campaign_id' | 'lawyer_id' | 'message_id' | 'error_message' | 'sent_at' | 'created_at' | 'updated_at'
   > {}
 
 class CampaignSendLog
@@ -24,6 +25,7 @@ class CampaignSendLog
   implements CampaignSendLogAttributes
 {
   public id!: number;
+  public campaign_id?: number | null;
   public lawyer_id?: number | null;
   public email!: string;
   public status!: 'SENT' | 'FAILED';
@@ -41,6 +43,16 @@ CampaignSendLog.init(
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
+    },
+    campaign_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      references: {
+        model: 'campaigns',
+        key: 'id',
+      },
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
     },
     lawyer_id: {
       type: DataTypes.BIGINT,
@@ -81,6 +93,9 @@ CampaignSendLog.init(
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     indexes: [
+      {
+        fields: ['campaign_id'],
+      },
       {
         fields: ['email'],
       },

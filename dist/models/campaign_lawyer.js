@@ -67,6 +67,16 @@ CampaignLawyer.init({
         allowNull: false,
         defaultValue: 'PENDING',
     },
+    campaign_id: {
+        type: sequelize_1.DataTypes.BIGINT,
+        allowNull: true,
+        references: {
+            model: 'campaigns',
+            key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
+    },
     import_batch_id: {
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: true,
@@ -88,6 +98,9 @@ CampaignLawyer.init({
         },
         {
             fields: ['status'],
+        },
+        {
+            fields: ['campaign_id'],
         },
         {
             fields: ['import_batch_id'],
