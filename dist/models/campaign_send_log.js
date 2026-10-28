@@ -50,6 +50,29 @@ CampaignSendLog.init({
         type: sequelize_1.DataTypes.TEXT,
         allowNull: true,
     },
+    is_opened: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+    },
+    opened_at: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: true,
+    },
+    open_count: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    },
+    delivery_status: {
+        type: sequelize_1.DataTypes.ENUM('PENDING', 'DELIVERED', 'BOUNCED', 'COMPLAINT'),
+        allowNull: true,
+        defaultValue: 'PENDING',
+    },
+    bounce_type: {
+        type: sequelize_1.DataTypes.STRING(50),
+        allowNull: true,
+    },
     sent_at: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
@@ -70,6 +93,12 @@ CampaignSendLog.init({
         },
         {
             fields: ['status'],
+        },
+        {
+            fields: ['is_opened'],
+        },
+        {
+            fields: ['delivery_status'],
         },
         {
             fields: ['sent_at'],

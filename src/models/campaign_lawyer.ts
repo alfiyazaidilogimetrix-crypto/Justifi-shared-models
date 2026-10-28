@@ -17,6 +17,8 @@ export interface CampaignLawyerAttributes {
   status: 'PENDING' | 'SENT' | 'FAILED' | 'UNSUBSCRIBED';
   campaign_id?: number | null;
   import_batch_id?: string;
+  is_opened?: boolean;
+  opened_at?: Date | null;
   last_sent_at?: Date | null;
   created_at?: Date;
   updated_at?: Date;
@@ -39,6 +41,8 @@ export interface CampaignLawyerCreationAttributes
     | 'status'
     | 'campaign_id'
     | 'import_batch_id'
+    | 'is_opened'
+    | 'opened_at'
     | 'last_sent_at'
     | 'created_at'
     | 'updated_at'
@@ -63,6 +67,8 @@ class CampaignLawyer
   public status!: 'PENDING' | 'SENT' | 'FAILED' | 'UNSUBSCRIBED';
   public campaign_id?: number | null;
   public import_batch_id?: string;
+  public is_opened?: boolean;
+  public opened_at?: Date | null;
   public last_sent_at?: Date | null;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
@@ -143,6 +149,15 @@ CampaignLawyer.init(
       type: DataTypes.STRING(100),
       allowNull: true,
     },
+    is_opened: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    opened_at: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
     last_sent_at: {
       type: DataTypes.DATE,
       allowNull: true,
@@ -164,6 +179,9 @@ CampaignLawyer.init(
       },
       {
         fields: ['campaign_id'],
+      },
+      {
+        fields: ['is_opened'],
       },
       {
         fields: ['import_batch_id'],

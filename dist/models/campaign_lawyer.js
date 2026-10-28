@@ -81,6 +81,15 @@ CampaignLawyer.init({
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: true,
     },
+    is_opened: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+    },
+    opened_at: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: true,
+    },
     last_sent_at: {
         type: sequelize_1.DataTypes.DATE,
         allowNull: true,
@@ -101,6 +110,9 @@ CampaignLawyer.init({
         },
         {
             fields: ['campaign_id'],
+        },
+        {
+            fields: ['is_opened'],
         },
         {
             fields: ['import_batch_id'],
