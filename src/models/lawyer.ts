@@ -21,6 +21,7 @@ interface LawyerAttributes {
   state_council_certificate?: number;
   certificate_for_practice?: number;
   areas_of_expertise?: number[];
+  verified_areas_of_expertise?: number[];
   legal_undertaking?: number;
   pan_number?: string;
   aadhar_number?: string;
@@ -128,6 +129,7 @@ class Lawyer
   public state_council_certificate?: number;
   public certificate_for_practice?: number;
   public areas_of_expertise?: number[];
+  public verified_areas_of_expertise?: number[];
   public legal_undertaking?: number;
   public pan_number?: string;
   public aadhar_number?: string;
@@ -188,6 +190,11 @@ Lawyer.init(
     areas_of_expertise: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull: true,
+    },
+    verified_areas_of_expertise: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      allowNull: true,
+      defaultValue: [],
     },
     legal_undertaking: { type: DataTypes.INTEGER, allowNull: true },
     pan_number: { type: DataTypes.STRING, allowNull: true },
