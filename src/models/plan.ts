@@ -35,7 +35,8 @@ export interface PlanAttributes {
     | "ADR_ROUTING"
     | "COMPLIANCE_RADAR"
     | "CONFLICT_OPTIMIZER"
-    | "QUANTUM_CALCULATOR";
+    | "QUANTUM_CALCULATOR"
+    | "LEGAL_CHECK";
   features?: string[];
   createdAt?: Date;
   updatedAt?: Date;
@@ -91,7 +92,8 @@ class Plan
     | "ADR_ROUTING"
     | "COMPLIANCE_RADAR"
     | "CONFLICT_OPTIMIZER"
-    | "QUANTUM_CALCULATOR";
+    | "QUANTUM_CALCULATOR"
+    | "LEGAL_CHECK";
   public features!: any;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -133,7 +135,8 @@ Plan.init(
         "ADR_ROUTING",
         "COMPLIANCE_RADAR",
         "CONFLICT_OPTIMIZER",
-        "QUANTUM_CALCULATOR"
+        "QUANTUM_CALCULATOR",
+        "LEGAL_CHECK"
       ),
       allowNull: true,
     },
