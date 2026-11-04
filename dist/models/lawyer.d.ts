@@ -19,6 +19,7 @@ interface LawyerAttributes {
     state_council_certificate?: number;
     certificate_for_practice?: number;
     areas_of_expertise?: number[];
+    verified_areas_of_expertise?: number[];
     legal_undertaking?: number;
     pan_number?: string;
     aadhar_number?: string;
@@ -75,6 +76,7 @@ declare class Lawyer extends Model<LawyerAttributes, LawyerCreationAttributes> i
     state_council_certificate?: number;
     certificate_for_practice?: number;
     areas_of_expertise?: number[];
+    verified_areas_of_expertise?: number[];
     legal_undertaking?: number;
     pan_number?: string;
     aadhar_number?: string;

@@ -35,6 +35,11 @@ Lawyer.init({
         type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.INTEGER),
         allowNull: true,
     },
+    verified_areas_of_expertise: {
+        type: sequelize_1.DataTypes.ARRAY(sequelize_1.DataTypes.INTEGER),
+        allowNull: true,
+        defaultValue: [],
+    },
     legal_undertaking: { type: sequelize_1.DataTypes.INTEGER, allowNull: true },
     pan_number: { type: sequelize_1.DataTypes.STRING, allowNull: true },
     aadhar_number: { type: sequelize_1.DataTypes.STRING, allowNull: true },
