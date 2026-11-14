@@ -62,6 +62,10 @@ CampaignLawyer.init({
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: true,
     },
+    cases_snapshot: {
+        type: sequelize_1.DataTypes.JSONB,
+        allowNull: true,
+    },
     status: {
         type: sequelize_1.DataTypes.ENUM('PENDING', 'SENT', 'FAILED', 'UNSUBSCRIBED'),
         allowNull: false,
