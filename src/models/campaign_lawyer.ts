@@ -14,6 +14,7 @@ export interface CampaignLawyerAttributes {
   website?: string;
   category?: string;
   bar_council_number?: string;
+  cases_snapshot?: object[] | any;
   status: 'PENDING' | 'SENT' | 'FAILED' | 'UNSUBSCRIBED';
   campaign_id?: number | null;
   import_batch_id?: string;
@@ -38,6 +39,7 @@ export interface CampaignLawyerCreationAttributes
     | 'website'
     | 'category'
     | 'bar_council_number'
+    | 'cases_snapshot'
     | 'status'
     | 'campaign_id'
     | 'import_batch_id'
@@ -64,6 +66,7 @@ class CampaignLawyer
   public website?: string;
   public category?: string;
   public bar_council_number?: string;
+  public cases_snapshot?: object[] | any;
   public status!: 'PENDING' | 'SENT' | 'FAILED' | 'UNSUBSCRIBED';
   public campaign_id?: number | null;
   public import_batch_id?: string;
@@ -128,6 +131,10 @@ CampaignLawyer.init(
     },
     bar_council_number: {
       type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    cases_snapshot: {
+      type: DataTypes.JSONB,
       allowNull: true,
     },
     status: {
