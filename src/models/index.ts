@@ -46,6 +46,10 @@ import Campaign, { CampaignAttributes, CampaignCreationAttributes } from './camp
 import CampaignLawyer, { CampaignLawyerAttributes, CampaignLawyerCreationAttributes } from './campaign_lawyer';
 import EmailSuppression, { EmailSuppressionAttributes, EmailSuppressionCreationAttributes } from './email_suppression';
 import CampaignSendLog, { CampaignSendLogAttributes, CampaignSendLogCreationAttributes } from './campaign_send_log';
+import ReferralCode, { ReferralCodeAttributes, ReferralCodeCreationAttributes } from './referral_code';
+import ReferralUsage, { ReferralUsageAttributes, ReferralUsageCreationAttributes } from './referral_usage';
+import WalletTransaction, { WalletTransactionAttributes, WalletTransactionCreationAttributes } from './wallet_transaction';
+import PayoutRequest, { PayoutRequestAttributes, PayoutRequestCreationAttributes } from './payout_request';
 
 // ─── Campaign Associations ──────────────────────────────────────────────────
 Campaign.hasMany(CampaignLawyer, { foreignKey: 'campaign_id', as: 'lawyers' });
@@ -422,6 +426,29 @@ WorkspaceMember.belongsTo(User, {
   as: 'user',
 });
 
+// ─── Referral Associations ──────────────────────────────────────────────
+User.hasOne(ReferralCode, { foreignKey: 'user_id', as: 'referralCode' });
+ReferralCode.belongsTo(User, { foreignKey: 'user_id', as: 'owner' });
+
+ReferralCode.hasMany(ReferralUsage, { foreignKey: 'referral_code_id', as: 'usages' });
+ReferralUsage.belongsTo(ReferralCode, { foreignKey: 'referral_code_id', as: 'referralCode' });
+
+User.hasMany(ReferralUsage, { foreignKey: 'referred_user_id', as: 'referralsUsed' });
+ReferralUsage.belongsTo(User, { foreignKey: 'referred_user_id', as: 'referredUser' });
+
+User.hasMany(ReferralUsage, { foreignKey: 'referrer_user_id', as: 'referralsGiven' });
+ReferralUsage.belongsTo(User, { foreignKey: 'referrer_user_id', as: 'referrerUser' });
+
+Payment.hasOne(ReferralUsage, { foreignKey: 'payment_id', as: 'referralUsage' });
+ReferralUsage.belongsTo(Payment, { foreignKey: 'payment_id', as: 'payment' });
+
+// ─── Wallet & Payout Associations ──────────────────────────────────────────
+User.hasMany(WalletTransaction, { foreignKey: 'user_id', as: 'walletTransactions' });
+WalletTransaction.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+
+User.hasMany(PayoutRequest, { foreignKey: 'user_id', as: 'payoutRequests' });
+PayoutRequest.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+
 // ─── Exports ─────────────────────────────────────────────────────────────────
 export {
   sequelize,
@@ -473,4 +500,8 @@ export {
   CampaignLawyer, CampaignLawyerAttributes, CampaignLawyerCreationAttributes,
   EmailSuppression, EmailSuppressionAttributes, EmailSuppressionCreationAttributes,
   CampaignSendLog, CampaignSendLogAttributes, CampaignSendLogCreationAttributes,
+  ReferralCode, ReferralCodeAttributes, ReferralCodeCreationAttributes,
+  ReferralUsage, ReferralUsageAttributes, ReferralUsageCreationAttributes,
+  WalletTransaction, WalletTransactionAttributes, WalletTransactionCreationAttributes,
+  PayoutRequest, PayoutRequestAttributes, PayoutRequestCreationAttributes,
 };

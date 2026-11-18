@@ -53,6 +53,19 @@ Payment.init({
         type: sequelize_1.DataTypes.JSON,
         allowNull: true,
     },
+    referral_code_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: true,
+    },
+    discount_amount: {
+        type: sequelize_1.DataTypes.FLOAT,
+        allowNull: true,
+        defaultValue: 0,
+    },
+    original_amount: {
+        type: sequelize_1.DataTypes.FLOAT,
+        allowNull: true,
+    },
 }, {
     sequelize: db_1.default,
     tableName: 'payments',

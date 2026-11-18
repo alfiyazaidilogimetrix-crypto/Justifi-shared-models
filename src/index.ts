@@ -49,6 +49,10 @@ export {
   CampaignLawyer, CampaignLawyerAttributes, CampaignLawyerCreationAttributes,
   EmailSuppression, EmailSuppressionAttributes, EmailSuppressionCreationAttributes,
   CampaignSendLog, CampaignSendLogAttributes, CampaignSendLogCreationAttributes,
+  ReferralCode, ReferralCodeAttributes, ReferralCodeCreationAttributes,
+  ReferralUsage, ReferralUsageAttributes, ReferralUsageCreationAttributes,
+  WalletTransaction, WalletTransactionAttributes, WalletTransactionCreationAttributes,
+  PayoutRequest, PayoutRequestAttributes, PayoutRequestCreationAttributes,
 } from './models';
 
 export { TestConnection } from './config/db';

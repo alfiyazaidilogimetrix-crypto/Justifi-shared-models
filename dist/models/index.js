@@ -3,7 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CampaignSendLog = exports.EmailSuppression = exports.CampaignLawyer = exports.Campaign = exports.PostalCode = exports.LawyerAvailability = exports.Notification = exports.FollowUpOffer = exports.ConsultationFeedback = exports.Complaint = exports.Payment = exports.PriorityConsultation = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Ticket = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
+exports.ReferralCode = exports.CampaignSendLog = exports.EmailSuppression = exports.CampaignLawyer = exports.Campaign = exports.PostalCode = exports.LawyerAvailability = exports.Notification = exports.FollowUpOffer = exports.ConsultationFeedback = exports.Complaint = exports.Payment = exports.PriorityConsultation = exports.Plan = exports.IPR_Document = exports.FileShare = exports.Folder = exports.WorkspaceMember = exports.Workspace = exports.GroupMember = exports.ChatGroup = exports.MessageStatus = exports.MessageDelete = exports.MessageReply = exports.Message = exports.CallLog = exports.DcCourt = exports.DcComplex = exports.DcCaseDetail = exports.DcAdvCase = exports.District = exports.StateData = exports.Task = exports.CompanyLawyer = exports.Company = exports.CompanyRegistration = exports.File = exports.RylawChat = exports.Slot = exports.QueryResponse = exports.Ticket = exports.Query = exports.Contract = exports.LegalArea = exports.Junior = exports.Lawyer = exports.UserDetails = exports.UserRecord = exports.User = exports.sequelize = void 0;
+exports.PayoutRequest = exports.WalletTransaction = exports.ReferralUsage = void 0;
 const db_1 = __importDefault(require("../config/db"));
 exports.sequelize = db_1.default;
 // ─── Model Imports ───────────────────────────────────────────────────────────
@@ -100,6 +101,14 @@ const email_suppression_1 = __importDefault(require("./email_suppression"));
 exports.EmailSuppression = email_suppression_1.default;
 const campaign_send_log_1 = __importDefault(require("./campaign_send_log"));
 exports.CampaignSendLog = campaign_send_log_1.default;
+const referral_code_1 = __importDefault(require("./referral_code"));
+exports.ReferralCode = referral_code_1.default;
+const referral_usage_1 = __importDefault(require("./referral_usage"));
+exports.ReferralUsage = referral_usage_1.default;
+const wallet_transaction_1 = __importDefault(require("./wallet_transaction"));
+exports.WalletTransaction = wallet_transaction_1.default;
+const payout_request_1 = __importDefault(require("./payout_request"));
+exports.PayoutRequest = payout_request_1.default;
 // ─── Campaign Associations ──────────────────────────────────────────────────
 campaign_1.default.hasMany(campaign_lawyer_1.default, { foreignKey: 'campaign_id', as: 'lawyers' });
 campaign_lawyer_1.default.belongsTo(campaign_1.default, { foreignKey: 'campaign_id', as: 'campaign' });
@@ -403,4 +412,20 @@ team_member_1.default.belongsTo(user_1.default, {
     foreignKey: 'user_id',
     as: 'user',
 });
+// ─── Referral Associations ──────────────────────────────────────────────
+user_1.default.hasOne(referral_code_1.default, { foreignKey: 'user_id', as: 'referralCode' });
+referral_code_1.default.belongsTo(user_1.default, { foreignKey: 'user_id', as: 'owner' });
+referral_code_1.default.hasMany(referral_usage_1.default, { foreignKey: 'referral_code_id', as: 'usages' });
+referral_usage_1.default.belongsTo(referral_code_1.default, { foreignKey: 'referral_code_id', as: 'referralCode' });
+user_1.default.hasMany(referral_usage_1.default, { foreignKey: 'referred_user_id', as: 'referralsUsed' });
+referral_usage_1.default.belongsTo(user_1.default, { foreignKey: 'referred_user_id', as: 'referredUser' });
+user_1.default.hasMany(referral_usage_1.default, { foreignKey: 'referrer_user_id', as: 'referralsGiven' });
+referral_usage_1.default.belongsTo(user_1.default, { foreignKey: 'referrer_user_id', as: 'referrerUser' });
+payment_1.default.hasOne(referral_usage_1.default, { foreignKey: 'payment_id', as: 'referralUsage' });
+referral_usage_1.default.belongsTo(payment_1.default, { foreignKey: 'payment_id', as: 'payment' });
+// ─── Wallet & Payout Associations ──────────────────────────────────────────
+user_1.default.hasMany(wallet_transaction_1.default, { foreignKey: 'user_id', as: 'walletTransactions' });
+wallet_transaction_1.default.belongsTo(user_1.default, { foreignKey: 'user_id', as: 'user' });
+user_1.default.hasMany(payout_request_1.default, { foreignKey: 'user_id', as: 'payoutRequests' });
+payout_request_1.default.belongsTo(user_1.default, { foreignKey: 'user_id', as: 'user' });
 //# sourceMappingURL=index.js.map
